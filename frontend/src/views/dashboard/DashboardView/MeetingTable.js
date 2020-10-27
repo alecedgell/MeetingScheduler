@@ -89,14 +89,6 @@ const MeetingTable = ({ className, ...rest }) => {
   function addCandidate() {
 
   }
-  async function sample() {
-    const response = await fetch("/api/getMeetings/0/", {
-      method: "GET",
-      mode: "cors",
-      cache: "no-cache",
-      credentials: "same-origin",
-    })
-  }
 
   return (
     <Card

@@ -2,7 +2,7 @@ import React from 'react';
 import FullCalendar from '@fullcalendar/react';
 import PropTypes, {func} from 'prop-types';
 import dayGridPlugin from '@fullcalendar/daygrid';
-import {Button, TableBody, TableHead, TableRow, TableCell, Table } from '@material-ui/core';
+import {Button, TableBody, TableHead, TableRow, TableCell, Table, Divider} from '@material-ui/core';
 
 // eslint-disable-next-line no-unused-vars
 // const Calender = ({ className, ...rest }) => {
@@ -29,6 +29,7 @@ import {Button, TableBody, TableHead, TableRow, TableCell, Table } from '@materi
 
 function Calender() {
   const [data, upDateData] = React.useState([]);
+  const [data2, upDateData2] = React.useState([]);
   const [firstLoad, setLoad] = React.useState(true);
   let isLoading = true;
 
@@ -37,8 +38,14 @@ function Calender() {
     let body = await response.json();
     upDateData(body);
   }
+  async function sampleLocation() {
+    let response2 = await fetch("/getLocation/1")
+    let body2 = await response2.json();
+    upDateData2(body2)
+  }
   if (firstLoad) {
     sampleFunc();
+    sampleLocation();
     setLoad(false)
   }
   if (data.length > 0) isLoading = false;
@@ -56,7 +63,7 @@ function Calender() {
         </TableHead>
         <TableBody>
           {data.map(row => (
-            <TableRow key={row.name}>
+            <TableRow hover key={row.name}>
               <TableCell>{row.meeting_id}</TableCell>
               <TableCell>{row.meeting_starttime}</TableCell>
               <TableCell>{row.meeting_endtime}</TableCell>
@@ -65,7 +72,29 @@ function Calender() {
           ))}
         </TableBody>
       </Table>
+      <Divider/>
+      <Table>
+        <TableHead>
+          <TableRow>
+            <TableCell>Location</TableCell>
+            <TableCell>Location Name</TableCell>
+            <TableCell>Start Time</TableCell>
+            <TableCell>End Time</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {data2.map(row => (
+            <TableRow hover key={row.name}>
+              <TableCell>{row.location_id}</TableCell>
+              <TableCell>{row.location_name}</TableCell>
+              <TableCell>{row.location_starttime}</TableCell>
+              <TableCell>{row.location_endtime}</TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+      </Table>
     </div>
+
   )
 }
 
