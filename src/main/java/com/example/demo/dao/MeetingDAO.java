@@ -47,7 +47,7 @@ public class MeetingDAO {
             ps.setInt(4,meeting.getLocation_id());
             return ps;
         },keyHolder);
-        insertParticipation(meeting.getUser_id(),keyHolder.getKey().intValue());
+//        insertParticipation(meeting.getUser_id(),keyHolder.getKey().intValue());
     }
     public void insertParticipation(List<Integer> user,int meeting){
         for(int i=0;i<user.size();i++) {

@@ -34,12 +34,12 @@ function Calender() {
   let isLoading = true;
 
   async function sampleFunc() {
-    let response = await fetch("/getMeetings/1")
+    let response = await fetch("/api/getMeetings/1")
     let body = await response.json();
     upDateData(body);
   }
   async function sampleLocation() {
-    let response2 = await fetch("/getLocation/1")
+    let response2 = await fetch("/api/getLocation/1")
     let body2 = await response2.json();
     upDateData2(body2)
   }
@@ -62,7 +62,7 @@ function Calender() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map(row => (
+          {data?.map(row => (
             <TableRow hover key={row.name}>
               <TableCell>{row.meeting_id}</TableCell>
               <TableCell>{row.meeting_starttime}</TableCell>
@@ -94,7 +94,6 @@ function Calender() {
         </TableBody>
       </Table>
     </div>
-
   )
 }
 

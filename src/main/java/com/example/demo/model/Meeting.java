@@ -1,17 +1,15 @@
 package com.example.demo.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Date;
 import java.util.List;
 
 @Entity
-@Table
+//@Table(name = "meeting")
 
 public class Meeting {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private int meeting_id;
 
@@ -27,7 +25,7 @@ public class Meeting {
     @Column
     private int location_id;
 
-    private List<Integer> user_id;
+//    private List<Integer> user_id;
 
     public int getMeeting_id() {
         return meeting_id;
@@ -69,11 +67,11 @@ public class Meeting {
         this.location_id = location_id;
     }
 
-    public List<Integer> getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(List<Integer> user_id) {
-        this.user_id = user_id;
-    }
+//    public List<Integer> getUser_id() {
+//        return user_id;
+//    }
+//
+//    public void setUser_id(List<Integer> user_id) {
+//        this.user_id = user_id;
+//    }
 }
