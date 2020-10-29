@@ -16,6 +16,12 @@ public class MeetingController {
     @Autowired
     MeetingDAO dao;
 
+    //getting user based upon user_type
+    @GetMapping(value = "/getUserType/{user_type}")
+    public List<Map<String, Object>> getUserType(@PathVariable("user_type") String user_type) {
+        return dao.getUserType(user_type);
+    }
+
     @GetMapping(value="/getUser/{email}/{password}")
     public List<Map<String,Object>> getUser(@PathVariable("email") String email, @PathVariable("password") String password){
         return dao.getUser(email,password);

@@ -3,6 +3,7 @@ import FullCalendar from '@fullcalendar/react';
 import PropTypes, {func} from 'prop-types';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import {Button, TableBody, TableHead, TableRow, TableCell, Table, Divider} from '@material-ui/core';
+import {SpaceBar} from "@material-ui/icons";
 
 // eslint-disable-next-line no-unused-vars
 // const Calender = ({ className, ...rest }) => {
@@ -73,6 +74,7 @@ function Calender() {
         </TableBody>
       </Table>
       <Divider/>
+
       <Table>
         <TableHead>
           <TableRow>

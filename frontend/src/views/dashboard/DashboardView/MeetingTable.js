@@ -2,7 +2,20 @@ import React, {useState} from 'react';
 import PropTypes, {func} from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import {
-  Box, Button, Table, TableHead, TableRow, TableCell, TableBody, Card, CardHeader, withStyles, Divider, Grid, Link
+  Box,
+  Button,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody,
+  Card,
+  CardHeader,
+  withStyles,
+  Divider,
+  Grid,
+  Link,
+  IconButton
 } from '@material-ui/core';
 import { v4 as uuid } from 'uuid';
 import clsx from 'clsx';
@@ -10,6 +23,8 @@ import theme from "../../../theme";
 import { Link as RouterLink } from 'react-router-dom';
 import { TextField } from '@material-ui/core';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import DeleteIcon from '@material-ui/icons/Delete';
+import {red} from "@material-ui/core/colors";
 
 
 const useStyles = makeStyles(() => ({
@@ -20,6 +35,9 @@ const useStyles = makeStyles(() => ({
   button: {
     margin: theme.spacing(1)
   },
+  deletebutton: {
+    backgroundColor: "red"
+  }
 }));
 const StyledTableCell = withStyles(() => ({
   head: {
@@ -43,40 +61,40 @@ const StyledTableRow = withStyles((theme) => ({
 const data = [
   {
     id: uuid(),
-    name: 'John Smith',
-    email: 'johnsmith@gmail.com',
+    // name: 'John Smith',
+    // email: 'johnsmith@gmail.com',
     upDocs: 'Resume, CV',
     schedule: 'Create/View/Delete',
     action: 'Edit/Delete'
   },
   {
     id: uuid(),
-    name: 'Jane Doe',
-    email: 'jd@gmailcom',
+    // name: 'Jane Doe',
+    // email: 'jd@gmailcom',
     upDocs: 'Resume',
     schedule: 'Create/View/Delete',
     action: 'Edit/Delete'
   },
   {
     id: uuid(),
-    name: 'Kyle Drywall',
-    email: 'kylemonster@gmail.com',
+    // name: 'Kyle Drywall',
+    // email: 'kylemonster@gmail.com',
     upDocs: 'Resume, CV',
     schedule: 'Create/View/Delete',
     action: 'Edit/Delete'
   },
   {
     id: uuid(),
-    name: 'Chad Greek',
-    email: 'delta_kappa@greeklife.com',
+    // name: 'Chad Greek',
+    // email: 'delta_kappa@greeklife.com',
     upDocs: 'None',
     schedule: 'Create/View/Delete',
     action: 'Edit/Delete'
   },
   {
     id: uuid(),
-    name: 'Eddie Van Halen',
-    email: 'vanhalen@gmail.com',
+    // name: 'Eddie Van Halen',
+    // email: 'vanhalen@gmail.com',
     upDocs: 'Resume, CV',
     schedule: 'Create/View/Delete',
     action: 'Edit/Delete'
@@ -84,10 +102,23 @@ const data = [
 ];
 const MeetingTable = ({ className, ...rest }) => {
   const classes = useStyles();
-  const [people] = useState(data);
+  // const [people] = useState(data);
+  const [data, upDateData] = React.useState([]);
+  const [firstLoad, setLoad] = React.useState(true);
+  let isLoading = true;
 
   function addCandidate() {
 
+  }
+
+  async function getCandidate() {
+    let response = await fetch("/api/getUserType/Candidate")
+    let body = await response.json();
+    upDateData(body);
+  }
+  if (firstLoad) {
+    getCandidate()
+    setLoad(false)
   }
 
   return (
@@ -96,7 +127,6 @@ const MeetingTable = ({ className, ...rest }) => {
       {...rest}
     >
       <CardHeader title='Meetings' className={classes.header}/>
-
         <Grid
           container
           direction={"row"}
@@ -120,20 +150,26 @@ const MeetingTable = ({ className, ...rest }) => {
                 <TableCell>Email</TableCell>
                 <TableCell>Uploaded Documents</TableCell>
                 <TableCell>Meeting Schedule</TableCell>
-                <TableCell>Action</TableCell>
+                <TableCell align={"center"}>Action</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {people.map((order) => (
+              {data?.map(row => (
                 <TableRow
                   hover
-                  key={order.id}
+                  key={row.id}
                 >
-                  <TableCell>{order.name}</TableCell>
-                  <TableCell>{order.email}</TableCell>
-                  <TableCell>{order.upDocs}</TableCell>
-                  <TableCell>{order.schedule}</TableCell>
-                  <TableCell>{order.action}</TableCell>
+                  <TableCell>{row.user_name}</TableCell>
+                  <TableCell>{row.user_email}</TableCell>
+                  {/*<TableCell>{order.upDocs}</TableCell>*/}
+                  <TableCell>CV</TableCell>
+                  <TableCell>Create/Delete</TableCell>
+                  {/*<TableCell>{order.schedule}</TableCell>*/}
+                  {/*<TableCell>{order.action}</TableCell>*/}
+                  <TableCell align={"center"}>
+                    <Button className={classes.button} variant={"contained"}>Edit</Button>
+                    <Button className={classes.deletebutton} variant={"contained"} startIcon={<DeleteIcon/>}>Delete</Button>
+                  </TableCell>
                 </TableRow>
 
               ))}

@@ -16,6 +16,12 @@ public class MeetingDAO {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
+    //added to test getting all candidates
+    public List<Map<String, Object>> getUserType(String userType) {
+        String sql = "select user_name, user_email from all_user where user_type='"+userType+"'";
+        return jdbcTemplate.queryForList(sql);
+    }
+
     public List<Map<String,Object>> getUser(String email,String password){
         String sql="select * from all_user where user_email='"+email+"' and user_password='"+password+"'";
         return jdbcTemplate.queryForList(sql);
