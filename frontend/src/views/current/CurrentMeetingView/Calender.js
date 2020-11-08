@@ -53,6 +53,7 @@ function Calender() {
 
   return (
     <div>
+      <Button onClick={() => window.print()} variant={'contained'}>Print</Button>
       <Table>
         <TableHead>
           <TableRow>

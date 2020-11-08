@@ -5,7 +5,6 @@ import {
   Grid,
   makeStyles
 } from '@material-ui/core';
-// import { Pagination } from '@material-ui/lab';
 import Page from 'src/components/Page';
 import Calender from './Calender';
 import ReactToPrint, { useReactToPrint } from 'react-to-print';
@@ -37,9 +36,7 @@ const ProductList = () => {
       title="Current Meetings"
     >
       <Container maxWidth={false}>
-        <ReactToPrint
-          trigger={() => <Button variant={'contained'}>Print</Button>}
-          content={() => componentRef.current}/>
+        {/*<Button onClick={() => window.print()}>Print</Button>*/}
         <Calender />
       </Container>
     </Page>

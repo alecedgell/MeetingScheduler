@@ -24,7 +24,6 @@ import { Link as RouterLink } from 'react-router-dom';
 import { TextField } from '@material-ui/core';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import DeleteIcon from '@material-ui/icons/Delete';
-import {red} from "@material-ui/core/colors";
 
 
 const useStyles = makeStyles(() => ({
@@ -39,23 +38,6 @@ const useStyles = makeStyles(() => ({
     backgroundColor: "red"
   }
 }));
-const StyledTableCell = withStyles(() => ({
-  head: {
-    backgroundColor: '#3f51b5',
-    color: 'white',
-  },
-  body: {
-    fontSize: 14,
-  },
-}))(TableCell);
-
-const StyledTableRow = withStyles((theme) => ({
-  root: {
-    '&:nth-of-type(odd)': {
-      backgroundColor: theme.palette.action.hover,
-    },
-  },
-}))(TableRow);
 
 
 const data = [
@@ -110,7 +92,9 @@ const MeetingTable = ({ className, ...rest }) => {
   function addCandidate() {
 
   }
+  function deleteCandidate() {
 
+  }
   async function getCandidate() {
     let response = await fetch("/api/getUserType/Candidate")
     let body = await response.json();
@@ -168,7 +152,7 @@ const MeetingTable = ({ className, ...rest }) => {
                   {/*<TableCell>{order.action}</TableCell>*/}
                   <TableCell align={"center"}>
                     <Button className={classes.button} variant={"contained"}>Edit</Button>
-                    <Button className={classes.deletebutton} variant={"contained"} startIcon={<DeleteIcon/>}>Delete</Button>
+                    <Button className={classes.deletebutton} variant={"contained"} startIcon={<DeleteIcon/>} onClick={deleteCandidate()}>Delete</Button>
                   </TableCell>
                 </TableRow>
 

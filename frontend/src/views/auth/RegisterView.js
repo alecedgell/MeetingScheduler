@@ -11,7 +11,8 @@ import {
   Link,
   TextField,
   Typography,
-  makeStyles
+  makeStyles,
+  Select
 } from '@material-ui/core';
 import Page from 'src/components/Page';
 
@@ -27,6 +28,10 @@ const useStyles = makeStyles((theme) => ({
 const RegisterView = () => {
   const classes = useStyles();
   const navigate = useNavigate();
+
+  function createAccount() {
+
+  }
 
   return (
     <Page
@@ -110,6 +115,20 @@ const RegisterView = () => {
                   value={values.lastName}
                   variant="outlined"
                 />
+                <Select
+                  value={values.role}
+                  onChange={handleChange}
+                  fullWidth
+                  name={'role'}
+                  >
+                  <option value={" "}>None</option>
+                  <option value={"admin"}>Administrator</option>
+                  <option value={"meetingCreator"}>Meeting Creator</option>
+                  <option value={"participant"}>Participant</option>
+                </Select>
+
+
+
                 <TextField
                   error={Boolean(touched.email && errors.email)}
                   fullWidth
@@ -136,33 +155,33 @@ const RegisterView = () => {
                   value={values.password}
                   variant="outlined"
                 />
-                <Box
-                  alignItems="center"
-                  display="flex"
-                  ml={-1}
-                >
-                  <Checkbox
-                    checked={values.policy}
-                    name="policy"
-                    onChange={handleChange}
-                  />
-                  <Typography
-                    color="textSecondary"
-                    variant="body1"
-                  >
-                    I have read the
-                    {' '}
-                    <Link
-                      color="primary"
-                      component={RouterLink}
-                      to="#"
-                      underline="always"
-                      variant="h6"
-                    >
-                      Terms and Conditions
-                    </Link>
-                  </Typography>
-                </Box>
+                {/*<Box*/}
+                {/*  alignItems="center"*/}
+                {/*  display="flex"*/}
+                {/*  ml={-1}*/}
+                {/*>*/}
+                {/*  <Checkbox*/}
+                {/*    checked={values.policy}*/}
+                {/*    name="policy"*/}
+                {/*    onChange={handleChange}*/}
+                {/*  />*/}
+                {/*  <Typography*/}
+                {/*    color="textSecondary"*/}
+                {/*    variant="body1"*/}
+                {/*  >*/}
+                {/*    I have read the*/}
+                {/*    {' '}*/}
+                {/*    <Link*/}
+                {/*      color="primary"*/}
+                {/*      component={RouterLink}*/}
+                {/*      to="#"*/}
+                {/*      underline="always"*/}
+                {/*      variant="h6"*/}
+                {/*    >*/}
+                {/*      Terms and Conditions*/}
+                {/*    </Link>*/}
+                {/*  </Typography>*/}
+                {/*</Box>*/}
                 {Boolean(touched.policy && errors.policy) && (
                   <FormHelperText error>
                     {errors.policy}
@@ -176,6 +195,7 @@ const RegisterView = () => {
                     size="large"
                     type="submit"
                     variant="contained"
+                    onClick={createAccount()}
                   >
                     Sign up now
                   </Button>
