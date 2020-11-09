@@ -1,7 +1,4 @@
 import React from 'react';
-import FullCalendar from '@fullcalendar/react';
-import PropTypes, {func} from 'prop-types';
-import dayGridPlugin from '@fullcalendar/daygrid';
 import {
   Button,
   TableBody,
@@ -103,7 +100,6 @@ function Calender() {
                   <TableCell>Meeting status:</TableCell>
                   <TableCell>Running late/early etc</TableCell>
                 </TableRow>
-
               </TableBody>
             </Table>
           </Box>

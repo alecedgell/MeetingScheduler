@@ -38,15 +38,16 @@ const RegisterView = () => {
   const [cv, setCV] = React.useState("");
   const [coverLetter, setCoverLetter] = React.useState("");
   const [statement, setStatement] = React.useState("");
+  const [phone, setPhone] = React.useState("");
 
   const handleNameChange = event => setName(event.target.value);
   const handleRoleChange = event => setRole(event.target.value);
   const handleEmailChange = event => setEmail(event.target.value);
   const handlePassChange = event => setPassword(event.target.value);
+  const handlePhoneChange = event => setPhone(event.target.value);
 
   const handleSubmit = variable => {
-    const toInput = {number, name, password, role, cv, coverLetter, statement};
-    createAccount(toInput);
+    createAccount(email, name, password, role);
     setName("");
     setEmail("");
     setRole("");
@@ -59,19 +60,22 @@ const RegisterView = () => {
   if (firstLoad) {
     setLoad(false);
   }
-  async function createAccount(toInput) {
-    const response = await fetch("/api/insertUser", {
-      method: "POST",
-      mode: "cors",
-      cache: "no-cache",
-      credentials: "same-origin",
+  function createAccount(user_email, user_name, user_password, user_type) {
+    // var user_id = null;
+    var user_cv = null;
+    var user_coverletter = null;
+    var user_statement = null;
+    var user_phone = null;
+    const user = {user_phone, user_email, user_name, user_password, user_type, user_cv, user_coverletter, user_statement};
+    const options = {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json"
+        'Content-type': 'application/json',
       },
-      body: JSON.stringify(toInput)
-    });
-    let body = await response.json();
-    console.log(body.id)
+      body:JSON.stringify(user),
+    }
+    fetch('api/insertUser', options).catch(error => console.log(error))
+    navigate('/app/dashboard', { replace: true });
   }
 
   return (
@@ -97,8 +101,8 @@ const RegisterView = () => {
             validationSchema={
               Yup.object().shape({
                 email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
-                firstName: Yup.string().max(255).required('First name is required'),
-                lastName: Yup.string().max(255).required('Last name is required'),
+                // firstName: Yup.string().max(255).required('First name is required'),
+                // lastName: Yup.string().max(255).required('Last name is required'),
                 password: Yup.string().max(255).required('password is required'),
                 policy: Yup.boolean().oneOf([true], 'This field must be checked')
               })
@@ -108,7 +112,7 @@ const RegisterView = () => {
             }}
           >
             {({
-              errors,
+              // errors,
               handleBlur,
               // handleChange,
               // handleSubmit,
@@ -116,7 +120,7 @@ const RegisterView = () => {
               touched,
               values
             }) => (
-              <form>
+              <form onSubmit={handleSubmit}>
               {/*<form>*/}
                 <Box mb={3}>
                   <Typography
@@ -134,9 +138,9 @@ const RegisterView = () => {
                   </Typography>
                 </Box>
                 <TextField
-                  error={Boolean(touched.firstName && errors.firstName)}
+                  // error={Boolean(touched.firstName && errors.firstName)}
                   fullWidth
-                  helperText={touched.firstName && errors.firstName}
+                  // helperText={touched.firstName && errors.firstName}
                   label="First and Last Name"
                   margin="normal"
                   name="firstName"
@@ -152,14 +156,26 @@ const RegisterView = () => {
                   name={'role'}
                   >
                   <option value={" "}>None</option>
-                  <option value={"admin"}>Administrator</option>
-                  <option value={"meetingCreator"}>Meeting Creator</option>
-                  <option value={"participant"}>Participant</option>
+                  <option value={"Admin"}>Administrator</option>
+                  <option value={"MeetingCreator"}>Meeting Creator</option>
+                  <option value={"Participant"}>Participant</option>
+                  <option value={"Candidate"}>Candidate</option>
                 </Select>
                 <TextField
-                  error={Boolean(touched.email && errors.email)}
                   fullWidth
-                  helperText={touched.email && errors.email}
+                  label={"Phone Number"}
+                  margin={"normal"}
+                  name={"phone"}
+                  onBlur={handleBlur}
+                  onChange={handlePhoneChange}
+                  type={"phone"}
+                  value={phone}
+                  variant={"outlined"}
+                />
+                <TextField
+                  // error={Boolean(touched.email && errors.email)}
+                  fullWidth
+                  // helperText={touched.email && errors.email}
                   label="Email Address"
                   margin="normal"
                   name="email"
@@ -170,9 +186,9 @@ const RegisterView = () => {
                   variant="outlined"
                 />
                 <TextField
-                  error={Boolean(touched.password && errors.password)}
+                  // error={Boolean(touched.password && errors.password)}
                   fullWidth
-                  helperText={touched.password && errors.password}
+                  // helperText={touched.password && errors.password}
                   label="Password"
                   margin="normal"
                   name="password"
@@ -182,11 +198,11 @@ const RegisterView = () => {
                   value={password}
                   variant="outlined"
                 />
-                {Boolean(touched.policy && errors.policy) && (
-                  <FormHelperText error>
-                    {errors.policy}
-                  </FormHelperText>
-                )}
+                {/*{Boolean(touched.policy && errors.policy) && (*/}
+                {/*  <FormHelperText error>*/}
+                {/*    {errors.policy}*/}
+                {/*  </FormHelperText>*/}
+                {/*)}*/}
                 <Box my={2}>
                   <Button
                     color="primary"

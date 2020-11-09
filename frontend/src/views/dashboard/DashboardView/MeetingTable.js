@@ -42,7 +42,7 @@ const useStyles = makeStyles(() => ({
 
 const data = [
   {
-    id: uuid(),
+    // id: uuid(),
     // name: 'John Smith',
     // email: 'johnsmith@gmail.com',
     upDocs: 'Resume, CV',
@@ -50,7 +50,7 @@ const data = [
     action: 'Edit/Delete'
   },
   {
-    id: uuid(),
+    // id: uuid(),
     // name: 'Jane Doe',
     // email: 'jd@gmailcom',
     upDocs: 'Resume',
@@ -58,7 +58,7 @@ const data = [
     action: 'Edit/Delete'
   },
   {
-    id: uuid(),
+    // id: uuid(),
     // name: 'Kyle Drywall',
     // email: 'kylemonster@gmail.com',
     upDocs: 'Resume, CV',
@@ -66,7 +66,7 @@ const data = [
     action: 'Edit/Delete'
   },
   {
-    id: uuid(),
+    // id: uuid(),
     // name: 'Chad Greek',
     // email: 'delta_kappa@greeklife.com',
     upDocs: 'None',
@@ -74,7 +74,7 @@ const data = [
     action: 'Edit/Delete'
   },
   {
-    id: uuid(),
+    // id: uuid(),
     // name: 'Eddie Van Halen',
     // email: 'vanhalen@gmail.com',
     upDocs: 'Resume, CV',
@@ -87,14 +87,45 @@ const MeetingTable = ({ className, ...rest }) => {
   // const [people] = useState(data);
   const [data, upDateData] = React.useState([]);
   const [firstLoad, setLoad] = React.useState(true);
+  const [email, setEmail] = React.useState("");
+  const [name, setName] = React.useState("");
   let isLoading = true;
+  const handleEmailChange = event => setEmail(event.target.value);
+  const handleNameChange = event => setName(event.target.value);
 
-  function addCandidate() {
-
+  function addCandidate(user_name, user_email) {
+    var user_cv = null;
+    var user_coverLetter = null;
+    var user_statement = null;
+    var user_phone = null;
+    var user_password = null;
+    var user_type = "Candidate";
+    const user = {user_phone, user_email, user_name, user_password, user_type, user_cv, user_coverLetter, user_statement};
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body:JSON.stringify(user),
+    }
+    fetch('/api/insertUser', options).catch(error => console.log(error));
   }
-  function deleteCandidate() {
-
-  }
+  // const handleDelete = variable => {
+  //   deleteCandidate()
+  // }
+  // function deleteCandidate(user_id) {
+  //   // const user = {user_id}
+  //   const options = {
+  //     method: 'DELETE',
+  //     // headers: {
+  //     //   'Content-type': 'application/json',
+  //     // },
+  //     // body:JSON.stringify(user),
+  //   }
+  //   fetch('/api/deleteUser/' + user_id, options).catch(error => console.log(error)).then((response) => {
+  //     return response.json();
+  //   });
+  // }
   async function getCandidate() {
     let response = await fetch("/api/getUserType/Candidate")
     let body = await response.json();
@@ -104,6 +135,11 @@ const MeetingTable = ({ className, ...rest }) => {
     getCandidate()
     setLoad(false)
   }
+  const handleSubmit = variable => {
+    addCandidate(name, email);
+    setEmail("");
+    setName("");
+  };
 
   return (
     <Card
@@ -117,7 +153,7 @@ const MeetingTable = ({ className, ...rest }) => {
           justify={"flex-end"}
           alignItems={"flex-start"}
           >
-          <Button color={"primary"}  className={classes.button} variant={"contained"} onClick={addCandidate()}>Add Candidate</Button>
+          <Button color={"primary"}  className={classes.button} variant={"contained"} onClick={handleSubmit}>Add Candidate</Button>
           <RouterLink to='/app/create'>
             <Button color={"primary"} className={classes.button} variant={"contained"}>Create Meeting</Button>
           </RouterLink>
@@ -125,11 +161,15 @@ const MeetingTable = ({ className, ...rest }) => {
 
 
       <Divider/>
+
+
+
         <Box minWidth={800}>
           <Table>
             <TableHead>
 
               <TableRow>
+                <TableCell>ID</TableCell>
                 <TableCell>Candidate Name</TableCell>
                 <TableCell>Email</TableCell>
                 <TableCell>Uploaded Documents</TableCell>
@@ -143,6 +183,7 @@ const MeetingTable = ({ className, ...rest }) => {
                   hover
                   key={row.id}
                 >
+                  <TableCell>{row.user_id}</TableCell>
                   <TableCell>{row.user_name}</TableCell>
                   <TableCell>{row.user_email}</TableCell>
                   {/*<TableCell>{order.upDocs}</TableCell>*/}
@@ -152,14 +193,16 @@ const MeetingTable = ({ className, ...rest }) => {
                   {/*<TableCell>{order.action}</TableCell>*/}
                   <TableCell align={"center"}>
                     <Button className={classes.button} variant={"contained"}>Edit</Button>
-                    <Button className={classes.deletebutton} variant={"contained"} startIcon={<DeleteIcon/>} onClick={deleteCandidate()}>Delete</Button>
+                    {/*<Button className={classes.deletebutton} variant={"contained"} startIcon={<DeleteIcon/>} onClick={deleteCandidate(row.user_id)}>Delete</Button>*/}
                   </TableCell>
                 </TableRow>
 
               ))}
+
               <TableRow>
-                <TableCell><TextField id={'standard-basic'} defaultValue={'Name'}></TextField></TableCell>
-                <TableCell><TextField id={'standard-basic'} defaultValue={'Email'}></TextField></TableCell>
+
+                <TableCell><TextField label={"Name"} name={"fullName"} onChange={handleNameChange} value={name}></TextField></TableCell>
+                <TableCell><TextField label={"Email"} name={"email"} onChange={handleEmailChange} value={email}></TextField></TableCell>
                 <TableCell><Button variant={'contained'} startIcon={<CloudUploadIcon />}>Upload</Button></TableCell>
               </TableRow>
             </TableBody>
