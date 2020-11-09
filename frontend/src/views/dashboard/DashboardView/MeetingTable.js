@@ -110,22 +110,22 @@ const MeetingTable = ({ className, ...rest }) => {
     }
     fetch('/api/insertUser', options).catch(error => console.log(error));
   }
-  // const handleDelete = variable => {
-  //   deleteCandidate()
-  // }
-  // function deleteCandidate(user_id) {
-  //   // const user = {user_id}
-  //   const options = {
-  //     method: 'DELETE',
-  //     // headers: {
-  //     //   'Content-type': 'application/json',
-  //     // },
-  //     // body:JSON.stringify(user),
-  //   }
-  //   fetch('/api/deleteUser/' + user_id, options).catch(error => console.log(error)).then((response) => {
-  //     return response.json();
-  //   });
-  // }
+  const handleDelete = variable => {
+    deleteCandidate()
+  }
+  function deleteCandidate(user_id) {
+    // const user = {user_id}
+    const options = {
+      method: 'DELETE',
+      // headers: {
+      //   'Content-type': 'application/json',
+      // },
+      // body:JSON.stringify(user),
+    }
+    fetch('/api/deleteUser/' + user_id, options).catch(error => console.log(error)).then((response) => {
+      return response.json();
+    });
+  }
   async function getCandidate() {
     let response = await fetch("/api/getUserType/Candidate")
     let body = await response.json();
@@ -178,7 +178,7 @@ const MeetingTable = ({ className, ...rest }) => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {data?.map(row => (
+              {data?.map((row) => (
                 <TableRow
                   hover
                   key={row.id}
@@ -193,7 +193,7 @@ const MeetingTable = ({ className, ...rest }) => {
                   {/*<TableCell>{order.action}</TableCell>*/}
                   <TableCell align={"center"}>
                     <Button className={classes.button} variant={"contained"}>Edit</Button>
-                    {/*<Button className={classes.deletebutton} variant={"contained"} startIcon={<DeleteIcon/>} onClick={deleteCandidate(row.user_id)}>Delete</Button>*/}
+                    <Button className={classes.deletebutton} variant={"contained"} startIcon={<DeleteIcon/>} >Delete</Button>
                   </TableCell>
                 </TableRow>
 

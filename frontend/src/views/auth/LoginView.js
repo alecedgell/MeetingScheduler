@@ -13,6 +13,7 @@ import {
   makeStyles
 } from '@material-ui/core';
 import Page from 'src/components/Page';
+import {func} from "prop-types";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,6 +27,42 @@ const useStyles = makeStyles((theme) => ({
 const LoginView = () => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const [email, setUserName] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [isLoggedIn, setLoggedIn] = React.useState();
+  const [isError, setIsError] = React.useState("");
+  const handleEmailChange = event => setUserName(event.target.value);
+  const handlePasswordChange = event => setPassword(event.target.value);
+
+  const handleSubmit = variable => {
+    login();
+
+  }
+  function login() {
+    const credentials = {email, password};
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body:JSON.stringify(credentials),
+    }
+    fetch('/api/getUser/', options).catch(error => console.log(error)).then(result => {
+      // navigate('/app/dashboard', { replace: true });
+      if (result.status === 200) {
+        // setLoggedIn(true)
+        navigate('/app/dashboard', { replace: true });
+      } else {
+        setIsError(true)
+      }
+    }).catch(e => {
+      setIsError(true)
+    });
+    navigate('/app/dashboard', { replace: true });
+  }
+  if (isLoggedIn) {
+    navigate('/app/dashboard', { replace: true });
+  }
 
   return (
     <Page
@@ -56,7 +93,7 @@ const LoginView = () => {
               errors,
               handleBlur,
               handleChange,
-              handleSubmit,
+              // handleSubmit,
               isSubmitting,
               touched,
               values
@@ -85,9 +122,9 @@ const LoginView = () => {
                   margin="normal"
                   name="email"
                   onBlur={handleBlur}
-                  onChange={handleChange}
+                  onChange={handleEmailChange}
                   type="email"
-                  value={values.email}
+                  value={email}
                   variant="outlined"
                 />
                 <TextField
@@ -98,9 +135,9 @@ const LoginView = () => {
                   margin="normal"
                   name="password"
                   onBlur={handleBlur}
-                  onChange={handleChange}
+                  onChange={handlePasswordChange}
                   type="password"
-                  value={values.password}
+                  value={password}
                   variant="outlined"
                 />
                 <Box my={2}>
@@ -111,6 +148,7 @@ const LoginView = () => {
                     size="large"
                     type="submit"
                     variant="contained"
+                    onClick={login}
                   >
                     Sign in now
                   </Button>
