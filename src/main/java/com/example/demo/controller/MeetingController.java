@@ -58,4 +58,14 @@ public class MeetingController {
     public void insertUser(@RequestBody User user){
         dao.insertUser(user);
     }
+    @DeleteMapping(value="/deleteUser/{user_id}")
+    public void deleteUser(@PathVariable("user_id")int user_id){
+        dao.deleteUser(user_id);
+    }
+
+    @DeleteMapping(value="/deleteUserFromMeeting/{user_id}/{meeting_id}")
+    public void deleteUserFromMeeting(@PathVariable("user_id")int user_id,
+                                      @PathVariable("meeting_id")int meeting_id){
+        dao.deleteUserFromMeeting(user_id,meeting_id);
+    }
 }

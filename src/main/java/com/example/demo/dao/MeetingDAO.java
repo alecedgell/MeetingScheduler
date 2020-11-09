@@ -18,7 +18,7 @@ public class MeetingDAO {
 
     //added to test getting all candidates
     public List<Map<String, Object>> getUserType(String userType) {
-        String sql = "select user_name, user_email from all_user where user_type='"+userType+"'";
+        String sql = "select user_id, user_name, user_email from all_user where user_type='"+userType+"'";
         return jdbcTemplate.queryForList(sql);
     }
 
@@ -71,6 +71,15 @@ public class MeetingDAO {
                 "','"+user.getUser_cv()+
                 "','"+user.getUser_coverletter()+
                 "','"+user.getUser_statement()+"')";
+        jdbcTemplate.update(sql);
+    }
+    public void deleteUser(int id){
+        String sql="delete from all_user where user_id="+id;
+        jdbcTemplate.update(sql);
+    }
+
+    public void deleteUserFromMeeting(int user_id, int meeting_id){
+        String sql="delete from participation where user_id="+user_id+" and meeting_id="+meeting_id;
         jdbcTemplate.update(sql);
     }
 }
