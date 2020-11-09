@@ -15,6 +15,7 @@ import {
   Select
 } from '@material-ui/core';
 import Page from 'src/components/Page';
+import {RecentActors} from "@material-ui/icons";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,9 +29,49 @@ const useStyles = makeStyles((theme) => ({
 const RegisterView = () => {
   const classes = useStyles();
   const navigate = useNavigate();
+  const [firstLoad, setLoad] = React.useState(true);
+  const [name, setName] = React.useState("");
+  const [role, setRole] = React.useState("");
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+  const [number, setNumber] = React.useState("");
+  const [cv, setCV] = React.useState("");
+  const [coverLetter, setCoverLetter] = React.useState("");
+  const [statement, setStatement] = React.useState("");
 
-  function createAccount() {
+  const handleNameChange = event => setName(event.target.value);
+  const handleRoleChange = event => setRole(event.target.value);
+  const handleEmailChange = event => setEmail(event.target.value);
+  const handlePassChange = event => setPassword(event.target.value);
 
+  const handleSubmit = variable => {
+    const toInput = {number, name, password, role, cv, coverLetter, statement};
+    createAccount(toInput);
+    setName("");
+    setEmail("");
+    setRole("");
+    setPassword("");
+    setNumber("");
+    setCoverLetter("");
+    setCV("");
+    setStatement("");
+  };
+  if (firstLoad) {
+    setLoad(false);
+  }
+  async function createAccount(toInput) {
+    const response = await fetch("/api/insertUser", {
+      method: "POST",
+      mode: "cors",
+      cache: "no-cache",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(toInput)
+    });
+    let body = await response.json();
+    console.log(body.id)
   }
 
   return (
@@ -69,13 +110,14 @@ const RegisterView = () => {
             {({
               errors,
               handleBlur,
-              handleChange,
-              handleSubmit,
+              // handleChange,
+              // handleSubmit,
               isSubmitting,
               touched,
               values
             }) => (
-              <form onSubmit={handleSubmit}>
+              <form>
+              {/*<form>*/}
                 <Box mb={3}>
                   <Typography
                     color="textPrimary"
@@ -95,29 +137,17 @@ const RegisterView = () => {
                   error={Boolean(touched.firstName && errors.firstName)}
                   fullWidth
                   helperText={touched.firstName && errors.firstName}
-                  label="First name"
+                  label="First and Last Name"
                   margin="normal"
                   name="firstName"
                   onBlur={handleBlur}
-                  onChange={handleChange}
-                  value={values.firstName}
-                  variant="outlined"
-                />
-                <TextField
-                  error={Boolean(touched.lastName && errors.lastName)}
-                  fullWidth
-                  helperText={touched.lastName && errors.lastName}
-                  label="Last name"
-                  margin="normal"
-                  name="lastName"
-                  onBlur={handleBlur}
-                  onChange={handleChange}
-                  value={values.lastName}
+                  onChange={handleNameChange}
+                  value={name}
                   variant="outlined"
                 />
                 <Select
-                  value={values.role}
-                  onChange={handleChange}
+                  value={role}
+                  onChange={handleRoleChange}
                   fullWidth
                   name={'role'}
                   >
@@ -126,9 +156,6 @@ const RegisterView = () => {
                   <option value={"meetingCreator"}>Meeting Creator</option>
                   <option value={"participant"}>Participant</option>
                 </Select>
-
-
-
                 <TextField
                   error={Boolean(touched.email && errors.email)}
                   fullWidth
@@ -137,9 +164,9 @@ const RegisterView = () => {
                   margin="normal"
                   name="email"
                   onBlur={handleBlur}
-                  onChange={handleChange}
+                  onChange={handleEmailChange}
                   type="email"
-                  value={values.email}
+                  value={email}
                   variant="outlined"
                 />
                 <TextField
@@ -150,38 +177,11 @@ const RegisterView = () => {
                   margin="normal"
                   name="password"
                   onBlur={handleBlur}
-                  onChange={handleChange}
+                  onChange={handlePassChange}
                   type="password"
-                  value={values.password}
+                  value={password}
                   variant="outlined"
                 />
-                {/*<Box*/}
-                {/*  alignItems="center"*/}
-                {/*  display="flex"*/}
-                {/*  ml={-1}*/}
-                {/*>*/}
-                {/*  <Checkbox*/}
-                {/*    checked={values.policy}*/}
-                {/*    name="policy"*/}
-                {/*    onChange={handleChange}*/}
-                {/*  />*/}
-                {/*  <Typography*/}
-                {/*    color="textSecondary"*/}
-                {/*    variant="body1"*/}
-                {/*  >*/}
-                {/*    I have read the*/}
-                {/*    {' '}*/}
-                {/*    <Link*/}
-                {/*      color="primary"*/}
-                {/*      component={RouterLink}*/}
-                {/*      to="#"*/}
-                {/*      underline="always"*/}
-                {/*      variant="h6"*/}
-                {/*    >*/}
-                {/*      Terms and Conditions*/}
-                {/*    </Link>*/}
-                {/*  </Typography>*/}
-                {/*</Box>*/}
                 {Boolean(touched.policy && errors.policy) && (
                   <FormHelperText error>
                     {errors.policy}
@@ -195,7 +195,7 @@ const RegisterView = () => {
                     size="large"
                     type="submit"
                     variant="contained"
-                    onClick={createAccount()}
+                    onClick={handleSubmit}
                   >
                     Sign up now
                   </Button>

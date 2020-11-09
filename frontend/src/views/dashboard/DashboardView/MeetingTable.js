@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import PropTypes, {func} from 'prop-types';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/styles';
 import {
   Box,

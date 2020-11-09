@@ -4,6 +4,7 @@ import com.example.demo.dao.MeetingDAO;
 import com.example.demo.model.Meeting;
 import com.example.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -15,6 +16,7 @@ public class MeetingController {
 
     @Autowired
     MeetingDAO dao;
+
 
     //getting user based upon user_type
     @GetMapping(value = "/getUserType/{user_type}")
