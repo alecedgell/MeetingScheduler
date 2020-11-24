@@ -35,6 +35,9 @@ const useStyles = makeStyles((theme) => ({
 export default function CreateForm({ className, ...rest }) {
   const [room, setRoom] = React.useState('');
   const [building, setBuilding] = React.useState('');
+  const [startTime, setStartTime] = React.useState('');
+  const [endTime, setEndTime] = React.useState('');
+
   //changing the value in the room drop down
   const handleChangeRoom= (event) => {
     setRoom(event.target.value);
@@ -44,6 +47,36 @@ export default function CreateForm({ className, ...rest }) {
   const handleChangeBuild = (event) => {
     setBuilding(event.target.value);
   };
+
+  const handleChangeStartTime = (event) => {
+    setStartTime(event.target.value);
+  };
+
+  const handleChangeEndTime = (event) => {
+    setEndTime(event.target.value);
+  };
+
+  const handleCreateMeeting = variable => {
+    createMeeting(startTime,endTime);
+    setStartTime('');
+    setEndTime('');
+    setBuilding('');
+    setRoom('');
+  };
+
+  function createMeeting(meeting_starttime,meeting_endtime){
+    var feedback=null;
+    const location=1;
+    const meeting={meeting_starttime,meeting_endtime,feedback,location};
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+      },
+      body:JSON.stringify(meeting),
+    }
+    fetch('api/insertMeeting', options).catch(error => console.log(error))
+  }
   // const [selectedDate, handleDateChange] = useState(new Date());
   const classes = useStyles();
   return (
@@ -64,16 +97,10 @@ export default function CreateForm({ className, ...rest }) {
               spacing={2}
             >
               <Grid item xs={3}>
-                <TextField id={'outlined-basic'} label={"First Name"} variant={"outlined"} />
+                <TextField id={"datetime-local"} label={"Meeting Start Time"} type={"datetime-local"} defaultValue={new Date()} InputLabelProps={{shrink: true}} onChange={handleChangeStartTime}/>
               </Grid>
               <Grid item xs={3}>
-                <TextField  id={'outlined-basic'} label={"Last Name"} variant={"outlined"} />
-              </Grid>
-              <Grid item xs={3}>
-                <TextField id={'outlined-basic'} label={"Email"} variant={"outlined"} />
-              </Grid>
-              <Grid item xs={3}>
-                <TextField id={"datetime-local"} label={"New Meeting"} type={"datetime-local"} defaultValue={new Date()} InputLabelProps={{shrink: true}} />
+                <TextField id={"datetime-local"} label={"Meeting End Time"} type={"datetime-local"} defaultValue={new Date()} InputLabelProps={{shrink: true}} onChange={handleChangeEndTime}/>
               </Grid>
               <Grid item xs={6}>
               <FormControl variant={"outlined"} className={classes.formControl}>
@@ -125,6 +152,7 @@ export default function CreateForm({ className, ...rest }) {
                   size="large"
                   type="submit"
                   variant="contained"
+                  onClick={handleCreateMeeting}
                 >
                   Confirm Meeting
                 </Button>
