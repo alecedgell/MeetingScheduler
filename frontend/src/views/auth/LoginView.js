@@ -36,29 +36,34 @@ const LoginView = () => {
   const handleSubmit = variable => {
     login();
   }
-  async function login() {
+  function login() {
     const credential = {email, password};
-    // let options = {
-    //   method: 'POST',
-    //   headers: {
-    //     'Accept' : 'application/json',
-    //     'Content-type': 'application/json'
-    //   }
-    // }
+    let options = {
+      method: 'GET',
+      headers: {
+        'Accept' : 'application/json',
+        'Content-type': 'application/json'
+      },
+      body:JSON.stringify(credential),
+    }
     try {
-      let res = await fetch('/api/getUser/', credential, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-type': 'application/json'
-        }
-      });
-      let result = await res.json();
-      if (result && result.success) {
-        setLoggedIn(true);
-      } else {
-        setLoggedIn(false);
-      }
+      fetch('/api/getUser/', options).catch(error => console.log(error));
+
+
+        // navigate('/app/dashboard')
+
+
+
+      //let result = res.json();
+      //if (result.status === 304) {
+
+      //}
+      // //if (result && result.success) {
+      //   setLoggedIn(true);
+      //   navigate('/app/dashboard')
+      // } else {
+      //   setLoggedIn(false);
+      // }
     }
     catch (e) {
       setLoggedIn(false);
