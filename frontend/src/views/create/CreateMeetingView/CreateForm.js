@@ -76,6 +76,7 @@ export default function CreateForm({ className, ...rest }) {
       body:JSON.stringify(meeting),
     }
     fetch('api/insertMeeting', options).catch(error => console.log(error))
+    //
   }
   // const [selectedDate, handleDateChange] = useState(new Date());
   const classes = useStyles();
