@@ -1,19 +1,8 @@
 import React from 'react';
-import {
-  Button,
-  TableBody,
-  TableHead,
-  TableRow,
-  TableCell,
-  Table,
-  Divider,
-  Card,
-  CardHeader,
-  Grid,
-  Box
-} from '@material-ui/core';
+import {Button,  TableBody,  TableHead,  TableRow,  TableCell,  Table,  Divider,  Card,  CardHeader,  Grid,  Box} from '@material-ui/core';
 import {makeStyles} from "@material-ui/styles";
 import theme from "../../../theme";
+import FeedbackPopup from "./FeedbackPopup";
 
 
 const useStyles = makeStyles(() => ({
@@ -94,7 +83,7 @@ function Calender() {
                 </TableRow>
                 <TableRow>
                   <TableCell>Provide feedback:</TableCell>
-                  <TableCell>{row.meeting_feedback}(Nothing showing because no feedback in table)</TableCell>
+                  <TableCell>{row.meeting_feedback}(Nothing showing because no feedback in table)<FeedbackPopup/></TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell>Meeting status:</TableCell>
