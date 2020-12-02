@@ -1,9 +1,20 @@
 import React from 'react';
-import {Button,  TableBody,  TableHead,  TableRow,  TableCell,  Table,  Divider,  Card,  CardHeader,  Grid,  Box} from '@material-ui/core';
+import {
+  Button,
+  TableBody,
+  TableHead,
+  TableRow,
+  TableCell,
+  Table,
+  Divider,
+  Card,
+  CardHeader,
+  Grid,
+  Box
+} from '@material-ui/core';
 import {makeStyles} from "@material-ui/styles";
 import theme from "../../../theme";
-import FeedbackPopup from "./FeedbackPopup";
-
+import SimpleMap from "./Map"
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -57,8 +68,9 @@ function Calender() {
           <Box minWidth={600}>
 
             <Table>
-              <TableHead>
+              <TableHead key={"thead"}>
                 <TableRow>
+
                   <TableCell>Start time:</TableCell>
                   <TableCell>{row.meeting_starttime}</TableCell>
                   <TableCell>End time:</TableCell>
@@ -67,7 +79,8 @@ function Calender() {
                   <TableCell>{row.location_id}</TableCell>
                 </TableRow>
               </TableHead>
-              <TableBody>
+
+              <TableBody key={"tbody"}>
                 <TableRow>
                   <TableCell>Participants:</TableCell>
                   {/*fix this section
@@ -83,16 +96,22 @@ function Calender() {
                 </TableRow>
                 <TableRow>
                   <TableCell>Provide feedback:</TableCell>
-                  <TableCell>{row.meeting_feedback}(Nothing showing because no feedback in table)<FeedbackPopup/></TableCell>
+                  <TableCell>{row.meeting_feedback}(Nothing showing because no feedback in table)</TableCell>
                 </TableRow>
+
                 <TableRow>
                   <TableCell>Meeting status:</TableCell>
                   <TableCell>Running late/early etc</TableCell>
                 </TableRow>
+
               </TableBody>
+
             </Table>
+            <SimpleMap />
           </Box>
+
         </Card>
+
       ))}
 
 
@@ -139,8 +158,10 @@ function Calender() {
       {/*    ))}*/}
       {/*  </TableBody>*/}
       {/*</Table>*/}
+
     </div>
   )
 }
+
 
 export default Calender;

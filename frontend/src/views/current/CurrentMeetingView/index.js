@@ -8,6 +8,7 @@ import {
 import Page from 'src/components/Page';
 import Calender from './Calender';
 import ReactToPrint, { useReactToPrint } from 'react-to-print';
+import SimpleMap from "./Map";
 
 const useStyles = makeStyles((theme) => ({
   root: {
