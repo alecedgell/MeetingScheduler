@@ -10,15 +10,12 @@ import {
   Card,
   CardHeader,
   Grid,
-  Box, Dialog, DialogContentText, TextField
+  Box
 } from '@material-ui/core';
 import {makeStyles} from "@material-ui/styles";
 import theme from "../../../theme";
-import SimpleMap from "./Map"
+import Map from "./Map"
 import FeedbackPopup from "./FeedbackPopup";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogActions from "@material-ui/core/DialogActions";
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -29,7 +26,6 @@ const useStyles = makeStyles(() => ({
     marginBottom: theme.spacing(3)
   }
 }));
-
 function Calender() {
   const classes = useStyles();
   const [data, upDateData] = React.useState([]);
@@ -114,9 +110,7 @@ function Calender() {
               </TableBody>
 
             </Table>
-
-
-            <SimpleMap />
+            <Map />
           </Box>
 
         </Card>
@@ -124,7 +118,7 @@ function Calender() {
       ))}
 
     </div>
-  )
+  );
 }
 
 

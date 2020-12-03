@@ -36,49 +36,6 @@ const useStyles = makeStyles(() => ({
 }));
 
 
-const data = [
-  {
-    // id: uuid(),
-    // name: 'John Smith',
-    // email: 'johnsmith@gmail.com',
-    upDocs: 'Resume, CV',
-    schedule: 'Create/View/Delete',
-    action: 'Edit/Delete'
-  },
-  {
-    // id: uuid(),
-    // name: 'Jane Doe',
-    // email: 'jd@gmailcom',
-    upDocs: 'Resume',
-    schedule: 'Create/View/Delete',
-    action: 'Edit/Delete'
-  },
-  {
-    // id: uuid(),
-    // name: 'Kyle Drywall',
-    // email: 'kylemonster@gmail.com',
-    upDocs: 'Resume, CV',
-    schedule: 'Create/View/Delete',
-    action: 'Edit/Delete'
-  },
-  {
-    // id: uuid(),
-    // name: 'Chad Greek',
-    // email: 'delta_kappa@greeklife.com',
-    upDocs: 'None',
-    schedule: 'Create/View/Delete',
-    action: 'Edit/Delete'
-  },
-  {
-    // id: uuid(),
-    // name: 'Eddie Van Halen',
-    // email: 'vanhalen@gmail.com',
-    upDocs: 'Resume, CV',
-    schedule: 'Create/View/Delete',
-    action: 'Edit/Delete'
-  },
-];
-
 function deleteCandidate(user_id) {
   const options = {
     method: 'DELETE',

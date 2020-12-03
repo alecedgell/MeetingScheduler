@@ -4,21 +4,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 
-// function addFeedback(meeting_id, meeting_feedback) {
-//   console.log(meeting_id);
-//   console.log(meeting_feedback)
-//
-//   const feedback = {meeting_id,  meeting_feedback};
-//   const options = {
-//     method: 'PUT',
-//     headers: {
-//       'Accept-type': 'application/json',
-//       'Content-type': 'application/json',
-//     },
-//     body:JSON.stringify(feedback)
-//   }
-//   fetch('http://localhost:8080/api/updateFeedback', options).catch(error => console.log(error))
-// }
+
 
 export default function Popup({meeting_id}) {
   const [open, setOpen] = React.useState(false);
