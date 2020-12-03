@@ -37,7 +37,7 @@ const ProductList = () => {
       className={classes.root}
       title="Current Meetings"
     >
-      <Container maxWidth={false}>
+      <Container maxWidth={"lg"}>
         {/*<Button onClick={() => window.print()}>Print</Button>*/}
         <Calender />
       </Container>
