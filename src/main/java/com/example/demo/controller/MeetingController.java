@@ -68,4 +68,20 @@ public class MeetingController {
                                       @PathVariable("meeting_id")int meeting_id){
         dao.deleteUserFromMeeting(user_id,meeting_id);
     }
+
+//    @PutMapping(value = "/api/updateFeedback")
+//    public void updateFeedback(@RequestBody Meeting meeting){
+//        dao.updateFeedback(meeting);
+//    }
+
+    @PutMapping(value = "/api/updateFeedbackTest/{meeting_id}/{meeting_feedback}")
+    public void updateFeedbackTest(@PathVariable("meeting_id")int meeting_id,
+                               @PathVariable("meeting_feedback")char meeting_feedback){
+        dao.updateFeedbackTest(meeting_id, meeting_feedback);
+    }
+
+    @PutMapping(value = "/api/updateMeetingTime")
+    public void updateMeetingTime(@RequestBody Meeting meeting){
+        dao.updateMeetingTime(meeting);
+    }
 }

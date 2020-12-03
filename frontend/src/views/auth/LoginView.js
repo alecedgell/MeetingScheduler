@@ -48,7 +48,7 @@ const LoginView = () => {
     }
     try {
       fetch('/api/getUser/', options).catch(error => console.log(error));
-
+      //navigate('/app/dashboard')
 
         // navigate('/app/dashboard')
 
