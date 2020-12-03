@@ -14,7 +14,7 @@ import {
 } from '@material-ui/core';
 import {makeStyles} from "@material-ui/styles";
 import theme from "../../../theme";
-import SimpleMap from "./Map"
+import Map from "./Map"
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -107,7 +107,7 @@ function Calender() {
               </TableBody>
 
             </Table>
-            <SimpleMap />
+            <Map />
           </Box>
 
         </Card>
