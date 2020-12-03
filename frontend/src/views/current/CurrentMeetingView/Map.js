@@ -3,7 +3,6 @@ import {
   GoogleMap,
   useLoadScript,
   Marker,
-  InfoWindow,
 } from "@react-google-maps/api";
 import "@reach/combobox/styles.css";
 
@@ -27,29 +26,17 @@ export default function App() {
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY,
     libraries,
   });
-  const [markers, setMarkers] = React.useState([]);
-  const [selected, setSelected] = React.useState(null);
+  //const [markers, setMarkers] = React.useState([]);
+  //const [selected, setSelected] = React.useState(null);
 
-  const onMapClick = React.useCallback((e) => {
-    setMarkers((current) => [
-      ...current,
-      {
-        lat: e.latLng.lat(),
-        lng: e.latLng.lng(),
-        time: new Date(),
-      },
-    ]);
-  }, []);
+  //const onMapClick = React.useCallback((e) => {  }, []);
 
   const mapRef = React.useRef();
   const onMapLoad = React.useCallback((map) => {
     mapRef.current = map;
   }, []);
 
-  const panTo = React.useCallback(({ lat, lng }) => {
-    mapRef.current.panTo({ lat, lng });
-    mapRef.current.setZoom(14);
-  }, []);
+
 
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
@@ -62,7 +49,6 @@ export default function App() {
         zoom={17}
         center={center}
         options={options}
-        onClick={onMapClick}
         onLoad={onMapLoad}
       >
 
