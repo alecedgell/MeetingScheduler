@@ -9,13 +9,14 @@ import {
   Divider,
   Card,
   CardHeader,
-  Grid,
   Box
 } from '@material-ui/core';
 import {makeStyles} from "@material-ui/styles";
 import theme from "../../../theme";
 import Map from "./Map"
 import FeedbackPopup from "./FeedbackPopup";
+import Alert from "./AlertType";
+import CandidateInfo from "./CandidateInfo";
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -92,14 +93,18 @@ function Calender() {
                   ))}</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell>See Candidate Info</TableCell>
+                  <TableCell><CandidateInfo/></TableCell>
                   <TableCell></TableCell>
+                  <TableCell></TableCell>
+                  <TableCell>Alert Type: Phone/Email/Both/None</TableCell>
+
+                  <TableCell><Alert/></TableCell>
+
                 </TableRow>
                 <TableRow>
                   <TableCell>Provide feedback:</TableCell>
-                  <TableCell>{row.meeting_feedback}
-                    <FeedbackPopup meeting_id={row.meeting_id}/>
-                  </TableCell>
+                  <TableCell>{row.meeting_feedback}</TableCell>
+                  <TableCell><FeedbackPopup meeting_id={row.meeting_id}/></TableCell>
                 </TableRow>
 
                 <TableRow>

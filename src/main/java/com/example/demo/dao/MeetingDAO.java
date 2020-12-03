@@ -86,10 +86,6 @@ public class MeetingDAO {
         String sql="update meeting set meeting_feedback='"+meeting.getMeeting_feedback()+"' where meeting_id="+meeting.getMeeting_id();
         jdbcTemplate.update(sql);
     }
-//    public void updateFeedbackTest(int meeting_id, char meeting_feedback){
-//        String sql="update meeting set meeting_feedback='"+meeting_feedback+"' where meeting_id="+meeting_id;
-//        jdbcTemplate.update(sql);
-//    }
 
     public void updateMeetingTime(Meeting meeting){
         String sql="update meeting set meeting_starttime='"+meeting.getMeeting_starttime()+

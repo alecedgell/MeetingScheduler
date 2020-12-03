@@ -74,11 +74,7 @@ public class MeetingController {
         dao.updateFeedback(meeting);
     }
 
-//    @PutMapping(value = "/api/updateFeedbackTest/{meeting_id}/{meeting_feedback}")
-//    public void updateFeedbackTest(@PathVariable("meeting_id")int meeting_id,
-//                               @PathVariable("meeting_feedback")char meeting_feedback){
-//        dao.updateFeedbackTest(meeting_id, meeting_feedback);
-//    }
+
 
     @PutMapping(value = "/updateMeetingTime")
     public void updateMeetingTime(@RequestBody Meeting meeting){

@@ -41,7 +41,7 @@ export default function Popup({meeting_id}) {
 
   return (
     <div>
-      <Button variant={"outlined"} color={"primary"} onClick={handleClickOpen}>Add Feedback</Button>
+      <Button color={"primary"} onClick={handleClickOpen}>Add Feedback</Button>
 
       <Dialog open={open} onClose={handleClose} aria-labelledby={"form-dialog-title"} fullWidth>
         <DialogTitle id={"form-dialog-title"}>Feedback</DialogTitle>

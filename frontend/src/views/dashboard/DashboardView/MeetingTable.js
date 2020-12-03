@@ -79,9 +79,7 @@ const MeetingTable = ({ className, ...rest }) => {
     }
     fetch('/api/insertUser', options).catch(error => console.log(error));
   }
-  const handleDelete = variable => {
-    deleteCandidate()
-  }
+
 
   async function getCandidate() {
     let response = await fetch("/api/getUserType/Candidate")

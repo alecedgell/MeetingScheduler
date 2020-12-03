@@ -39,6 +39,8 @@ const LoginView = () => {
   }
   function login() {
     const credential = {email, password};
+    console.log(email);
+    console.log(password)
     let options = {
       method: 'GET',
       headers: {
@@ -47,20 +49,18 @@ const LoginView = () => {
       },
       //body:JSON.stringify(credential),
     }
-    try {
-      fetch('/api/getUser/{email}/{password}', options).catch(error => console.log(error)).then(function(response) {
-        response.redirect('/app/dashboard')
-        // if (response.status === 200) {
-        //   navigate('/app/dashboard')
-        //   return;
-        // }
-        navigate('/app/dashboard')
+    navigate('app/dashboard')
+    let response = fetch('/api/getUser/{email}/{password}', options).catch(error => console.log(error));
+
+    console.log(response)
 
 
-      });
 
 
-        // navigate('/app/dashboard')
+
+
+
+         //navigate('/app/dashboard')
 
 
 
@@ -74,10 +74,9 @@ const LoginView = () => {
       // } else {
       //   setLoggedIn(false);
       // }
-    }
-    catch (e) {
-      setLoggedIn(false);
-    }
+
+
+    //navigate('/app/dashboard')
   }
   // function login() {
   //   const credentials = {email, password};
