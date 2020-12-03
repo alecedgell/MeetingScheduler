@@ -47,7 +47,7 @@ const RegisterView = () => {
   const handlePhoneChange = event => setPhone(event.target.value);
 
   const handleSubmit = variable => {
-    createAccount(email, name, password, role);
+    createAccount(number, email, name, password, role);
     setName("");
     setEmail("");
     setRole("");
@@ -60,12 +60,12 @@ const RegisterView = () => {
   if (firstLoad) {
     setLoad(false);
   }
-  function createAccount(user_email, user_name, user_password, user_type) {
+  function createAccount(user_phone, user_email, user_name, user_password, user_type) {
     // var user_id = null;
     var user_cv = null;
     var user_coverletter = null;
     var user_statement = null;
-    var user_phone = null;
+    //var user_phone = null;
     const user = {user_phone, user_email, user_name, user_password, user_type, user_cv, user_coverletter, user_statement};
     const options = {
       method: 'POST',

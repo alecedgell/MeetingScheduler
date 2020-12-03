@@ -10,11 +10,15 @@ import {
   Card,
   CardHeader,
   Grid,
-  Box
+  Box, Dialog, DialogContentText, TextField
 } from '@material-ui/core';
 import {makeStyles} from "@material-ui/styles";
 import theme from "../../../theme";
 import SimpleMap from "./Map"
+import FeedbackPopup from "./FeedbackPopup";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogActions from "@material-ui/core/DialogActions";
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -25,6 +29,7 @@ const useStyles = makeStyles(() => ({
     marginBottom: theme.spacing(3)
   }
 }));
+
 function Calender() {
   const classes = useStyles();
   const [data, upDateData] = React.useState([]);
@@ -96,7 +101,9 @@ function Calender() {
                 </TableRow>
                 <TableRow>
                   <TableCell>Provide feedback:</TableCell>
-                  <TableCell>{row.meeting_feedback}(Nothing showing because no feedback in table)</TableCell>
+                  <TableCell>{row.meeting_feedback}
+                    <FeedbackPopup meeting_id={row.meeting_id}/>
+                  </TableCell>
                 </TableRow>
 
                 <TableRow>
@@ -107,57 +114,14 @@ function Calender() {
               </TableBody>
 
             </Table>
+
+
             <SimpleMap />
           </Box>
 
         </Card>
 
       ))}
-
-
-
-      {/*<Table>*/}
-      {/*  <TableHead>*/}
-      {/*    <TableRow>*/}
-      {/*      <TableCell>Id</TableCell>*/}
-      {/*      <TableCell>Start Time</TableCell>*/}
-      {/*      <TableCell>End Time</TableCell>*/}
-      {/*      <TableCell>Location ID</TableCell>*/}
-      {/*    </TableRow>*/}
-      {/*  </TableHead>*/}
-      {/*  <TableBody>*/}
-      {/*    {data?.map(row => (*/}
-      {/*      <TableRow hover key={row.name}>*/}
-      {/*        <TableCell>{row.meeting_id}</TableCell>*/}
-      {/*        <TableCell>{row.meeting_starttime}</TableCell>*/}
-      {/*        <TableCell>{row.meeting_endtime}</TableCell>*/}
-      {/*        <TableCell>{row.location_id}</TableCell>*/}
-      {/*      </TableRow>*/}
-      {/*    ))}*/}
-      {/*  </TableBody>*/}
-      {/*</Table>*/}
-      {/*<Divider/>*/}
-
-      {/*<Table>*/}
-      {/*  <TableHead>*/}
-      {/*    <TableRow>*/}
-      {/*      <TableCell>Location</TableCell>*/}
-      {/*      <TableCell>Location Name</TableCell>*/}
-      {/*      <TableCell>Start Time</TableCell>*/}
-      {/*      <TableCell>End Time</TableCell>*/}
-      {/*    </TableRow>*/}
-      {/*  </TableHead>*/}
-      {/*  <TableBody>*/}
-      {/*    {data2.map(row => (*/}
-      {/*      <TableRow hover key={row.name}>*/}
-      {/*        <TableCell>{row.location_id}</TableCell>*/}
-      {/*        <TableCell>{row.location_name}</TableCell>*/}
-      {/*        <TableCell>{row.location_starttime}</TableCell>*/}
-      {/*        <TableCell>{row.location_endtime}</TableCell>*/}
-      {/*      </TableRow>*/}
-      {/*    ))}*/}
-      {/*  </TableBody>*/}
-      {/*</Table>*/}
 
     </div>
   )

@@ -14,6 +14,7 @@ import {
 } from '@material-ui/core';
 import Page from 'src/components/Page';
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: theme.palette.background.dark,
@@ -44,11 +45,20 @@ const LoginView = () => {
         'Accept' : 'application/json',
         'Content-type': 'application/json'
       },
-      body:JSON.stringify(credential),
+      //body:JSON.stringify(credential),
     }
     try {
-      fetch('/api/getUser/', options).catch(error => console.log(error));
-      //navigate('/app/dashboard')
+      fetch('/api/getUser/{email}/{password}', options).catch(error => console.log(error)).then(function(response) {
+        response.redirect('/app/dashboard')
+        // if (response.status === 200) {
+        //   navigate('/app/dashboard')
+        //   return;
+        // }
+        navigate('/app/dashboard')
+
+
+      });
+
 
         // navigate('/app/dashboard')
 

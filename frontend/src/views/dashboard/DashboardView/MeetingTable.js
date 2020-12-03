@@ -11,13 +11,9 @@ import {
   TableBody,
   Card,
   CardHeader,
-  withStyles,
   Divider,
-  Grid,
-  Link,
-  IconButton
+  Grid
 } from '@material-ui/core';
-import { v4 as uuid } from 'uuid';
 import clsx from 'clsx';
 import theme from "../../../theme";
 import { Link as RouterLink } from 'react-router-dom';
@@ -82,6 +78,22 @@ const data = [
     action: 'Edit/Delete'
   },
 ];
+
+function deleteCandidate(user_id) {
+  const options = {
+    method: 'DELETE',
+    headers: {
+      'Content-type': 'application/json',
+      'Accept' : 'application/json'
+    },
+  }
+  if (window.confirm('Are you sure you want to delete Candidate?')) {
+    fetch('/api/deleteUser/' + user_id, options).catch(error => console.log(error)).then((response) => {
+      return response.json();
+    });
+  }
+}
+
 const MeetingTable = ({ className, ...rest }) => {
   const classes = useStyles();
   // const [people] = useState(data);
@@ -113,19 +125,7 @@ const MeetingTable = ({ className, ...rest }) => {
   const handleDelete = variable => {
     deleteCandidate()
   }
-  function deleteCandidate(user_id) {
-    // const user = {user_id}
-    const options = {
-      method: 'DELETE',
-      // headers: {
-      //   'Content-type': 'application/json',
-      // },
-      // body:JSON.stringify(user),
-    }
-    fetch('/api/deleteUser/' + user_id, options).catch(error => console.log(error)).then((response) => {
-      return response.json();
-    });
-  }
+
   async function getCandidate() {
     let response = await fetch("/api/getUserType/Candidate")
     let body = await response.json();
@@ -159,15 +159,11 @@ const MeetingTable = ({ className, ...rest }) => {
           </RouterLink>
         </Grid>
 
-
       <Divider/>
-
-
 
         <Box minWidth={800}>
           <Table>
             <TableHead>
-
               <TableRow>
                 <TableCell>ID</TableCell>
                 <TableCell>Candidate Name</TableCell>
@@ -193,14 +189,11 @@ const MeetingTable = ({ className, ...rest }) => {
                   {/*<TableCell>{order.action}</TableCell>*/}
                   <TableCell align={"center"}>
                     <Button className={classes.button} variant={"contained"}>Edit</Button>
-                    <Button className={classes.deletebutton} variant={"contained"} startIcon={<DeleteIcon/>} >Delete</Button>
+                    <Button className={classes.deletebutton} variant={"contained"} startIcon={<DeleteIcon/>} onClick={() => deleteCandidate(row.user_id)}>Delete</Button>
                   </TableCell>
                 </TableRow>
-
               ))}
-
               <TableRow>
-
                 <TableCell><TextField label={"Name"} name={"fullName"} onChange={handleNameChange} value={name}></TextField></TableCell>
                 <TableCell><TextField label={"Email"} name={"email"} onChange={handleEmailChange} value={email}></TextField></TableCell>
                 <TableCell><Button variant={'contained'} startIcon={<CloudUploadIcon />}>Upload</Button></TableCell>
@@ -208,44 +201,7 @@ const MeetingTable = ({ className, ...rest }) => {
             </TableBody>
           </Table>
         </Box>
-
     </Card>
-    // <TableContainer>
-    //   <text>Meeting Scheduling for Position</text>
-    //   <text>Name: Lecturer; ID: 2987987; Department: Phy</text>
-    //   <Button variant="contained" color="primary">Add New Candidate</Button>
-    //   <Button variant="contained" color="primary">View All Meeting Schedules</Button>
-    //   <p> </p>
-    //   {/* eslint-disable-next-line no-undef */}
-    //   <Table className={classes.table}>
-    //     <TableHead>
-    //       <TableRow>
-    //         <StyledTableCell>Candidate Name</StyledTableCell>
-    //         <StyledTableCell align="right">Email</StyledTableCell>
-    //         <StyledTableCell align="right">Uploaded Documents</StyledTableCell>
-    //         <StyledTableCell align="right">Meeting Schedule</StyledTableCell>
-    //         <StyledTableCell align="right">Action</StyledTableCell>
-    //       </TableRow>
-    //     </TableHead>
-    //     <TableBody>
-    //       {rows.map((row) => (
-    //         <StyledTableRow key={row.name}>
-    //           <TableCell component="th" scope="row">
-    //             {row.name}
-    //           </TableCell>
-    //           <TableCell align="right">{row.email}</TableCell>
-    //           <TableCell align="right">{row.updocs}</TableCell>
-    //           <TableCell align="right">{row.schedule}</TableCell>
-    //           <TableCell align="right">{row.action}</TableCell>
-    //         </StyledTableRow>
-    //       ))}
-    //     </TableBody>
-    //   </Table>
-    //   <br />
-    //
-    //   <Button variant="contained" color="primary">Add a Position</Button>
-    //   <br />
-    // </TableContainer>
   );
 };
 
