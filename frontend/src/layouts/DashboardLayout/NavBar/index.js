@@ -36,12 +36,7 @@ const items = [
     href: '/app/account',
     icon: UsersIcon,
     title: 'Account'
-  },
-  {
-    href: '/app/settings',
-    icon: SettingsIcon,
-    title: 'Settings'
-  },
+  }
 ];
 
 const useStyles = makeStyles(() => ({
