@@ -80,4 +80,19 @@ public class MeetingController {
     public void updateMeetingTime(@RequestBody Meeting meeting){
         dao.updateMeetingTime(meeting);
     }
+
+    @PutMapping(value = "/updateAlert/{meeting_id}/{user_id}/{alert_type}")
+    public void updateAlert(@PathVariable("user_id")int user_id,
+                            @PathVariable("meeting_id")int meeting_id,
+                            @PathVariable("alert_type")String alert_type){
+        dao.updateAlert(meeting_id,user_id,alert_type);
+    }
+    @PutMapping(value = "/updateUser")
+    public void updateUser(@RequestBody User user){
+        dao.updateUser(user);
+    }
+    @GetMapping(value="/getUserByID/{user_id}")
+    public List<Map<String,Object>> getUserByID(@PathVariable("user_id")int user_id){
+        return dao.getUserByID(user_id);
+    }
 }

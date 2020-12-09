@@ -13,6 +13,7 @@ import {
   makeStyles
 } from '@material-ui/core';
 import Page from 'src/components/Page';
+import axios from 'axios'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -37,22 +38,43 @@ const LoginView = () => {
   const handleSubmit = variable => {
     login();
   }
+  const data = [];
   function login() {
     const credential = {email, password};
     console.log(email);
     console.log(password)
+    // let options = {
+    //   method: 'GET',
+    //   headers: {
+    //     // 'Accept' : 'application/json',
+    //     'Content-type': 'application/json'
+    //   },
+    //   // body:JSON.stringify(credential),
+    // }
     let options = {
-      method: 'GET',
       headers: {
-        'Accept' : 'application/json',
+        'Accept': 'application.json',
         'Content-type': 'application/json'
-      },
-      //body:JSON.stringify(credential),
+      }
     }
-    navigate('app/dashboard')
-    let response = fetch('/api/getUser/{email}/{password}', options).catch(error => console.log(error));
+    // navigate('app/dashboard')
+    // axios.post(`http://localhost:8080/api/getUser/${email}/${password}`, null, options).then((response) => {
+    //
+    //   console.log(response.data.response);
+    //   console.log(response.status)
+    //   // if (response.status === 200) {
+    //   //   navigate('/app/dashboard/')
+    //   // }
+    // }).catch((err) => {
+    //   console.log(err);
+    // });
+    axios.get(`http://localhost:8080/api/getUser/${email}/${password}`).then(res => {
+      // navigate('app/dashboard')
+    });
+    navigate('/app/dashboard')
+    // let response= await fetch('/api/getUser/{email}/{password}', options).catch(error => console.log(error));
 
-    console.log(response)
+    // console.log(response)
 
 
 
@@ -117,6 +139,13 @@ const LoginView = () => {
         justifyContent="center"
       >
         <Container maxWidth="sm">
+          {/*<GoogleLogin clientId={"728520715930-pi1tub9493i9dsgfrt85ljb2l7orhd9m.apps.googleusercontent.com"}*/}
+          {/*             buttonText={"Login"}*/}
+          {/*             onSuccess={responseGoogle}*/}
+          {/*             onFailure={responseGoogle}*/}
+          {/*             cookiePolicy={'single_host_origin'}*/}
+          {/*             />*/}
+
           <Formik
             initialValues={{
               email: 'example@gmail.com',

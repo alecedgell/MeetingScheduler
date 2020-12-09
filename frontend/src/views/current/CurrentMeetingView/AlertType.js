@@ -13,7 +13,6 @@ export default function Alert() {
   const handleSubmit = () => {
     submitAlert();
     setAlert(" ");
-
   };
   const handleClickOpen = () => {
     setOpen(true);

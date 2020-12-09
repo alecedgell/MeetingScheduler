@@ -27,7 +27,8 @@ const useStyles = makeStyles(() => ({
     marginBottom: theme.spacing(3)
   }
 }));
-function Calender() {
+
+export default function Calender() {
   const classes = useStyles();
   const [data, upDateData] = React.useState([]);
   const [data2, upDateData2] = React.useState([]);
@@ -60,6 +61,9 @@ function Calender() {
 
   return (
     <div>
+
+      {/*<Alert/>*/}
+
       <Button onClick={() => window.print()} variant={'contained'}>Print</Button>
       <Card className={classes.card}>
         <CardHeader title='Current Meetings'/>
@@ -96,7 +100,7 @@ function Calender() {
                   <TableCell><CandidateInfo/></TableCell>
                   <TableCell></TableCell>
                   <TableCell></TableCell>
-                  <TableCell>Alert Type: Phone/Email/Both/None</TableCell>
+                  <TableCell>Alert Type: </TableCell>
 
                   <TableCell><Alert/></TableCell>
 
@@ -125,6 +129,3 @@ function Calender() {
     </div>
   );
 }
-
-
-export default Calender;

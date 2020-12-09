@@ -19,6 +19,7 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Select from '@material-ui/core/Select';
 import MenuItem from "@material-ui/core/MenuItem";
 import DeleteIcon from "@material-ui/icons/Delete";
+import {DateTimePicker} from "@material-ui/pickers";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -66,7 +67,7 @@ export default function CreateForm({ className, ...rest }) {
 
   function createMeeting(meeting_starttime,meeting_endtime){
     var feedback=null;
-    const location=1;
+    var location="Davies";
     const meeting={meeting_starttime,meeting_endtime,feedback,location};
     const options = {
       method: 'POST',
@@ -75,7 +76,7 @@ export default function CreateForm({ className, ...rest }) {
       },
       body:JSON.stringify(meeting),
     }
-    fetch('api/insertMeeting', options).catch(error => console.log(error))
+    fetch('/api/insertMeeting', options).catch(error => console.log(error))
     //
   }
   // const [selectedDate, handleDateChange] = useState(new Date());
@@ -98,10 +99,28 @@ export default function CreateForm({ className, ...rest }) {
               spacing={2}
             >
               <Grid item xs={3}>
-                <TextField id={"datetime-local"} label={"Meeting Start Time"} type={"datetime-local"} defaultValue={new Date()} InputLabelProps={{shrink: true}} onChange={handleChangeStartTime}/>
+
+
+                <TextField
+                  id={"datetime-local"}
+                  label={"Meeting Start Time"}
+                  type={"datetime-local"}
+                  //defaultValue={new Date()}
+                  value={startTime}
+                  InputLabelProps={{shrink: true}}
+                  onChange={handleChangeStartTime}
+                />
               </Grid>
               <Grid item xs={3}>
-                <TextField id={"datetime-local"} label={"Meeting End Time"} type={"datetime-local"} defaultValue={new Date()} InputLabelProps={{shrink: true}} onChange={handleChangeEndTime}/>
+                <TextField
+                  id={"datetime-local"}
+                  label={"Meeting End Time"}
+                  type={"datetime-local"}
+                  defaultValue={new Date()}
+                  value={endTime}
+                  InputLabelProps={{shrink: true}}
+                  onChange={handleChangeEndTime}
+                />
               </Grid>
               <Grid item xs={6}>
               <FormControl variant={"outlined"} className={classes.formControl}>
@@ -117,9 +136,9 @@ export default function CreateForm({ className, ...rest }) {
                     <em>None</em>
                   </MenuItem>
                   <MenuItem value={"Centennial"}>Centennial Hall</MenuItem>
-                  <MenuItem value={"Hibbard"}>Hibbard Hall</MenuItem>
+                  <MenuItem value={"2"}>Hibbard Hall</MenuItem>
                   <MenuItem value={"Phillips"}>Phillips Hall</MenuItem>
-                  <MenuItem value={"Davies"}>Davies Center</MenuItem>
+                  <MenuItem value={"1"}>Davies Center</MenuItem>
                   <MenuItem value={"Schneider"}>Schneider Hall</MenuItem>
                 </Select>
               </FormControl>
@@ -146,7 +165,7 @@ export default function CreateForm({ className, ...rest }) {
               </FormControl>
               </Grid>
               <Box my={2}>
-                <RouterLink to={"/app/dashboard"}>
+                {/*<RouterLink to={"/app/dashboard"}>*/}
                 <Button
                   color="primary"
                   fullWidth
@@ -157,7 +176,7 @@ export default function CreateForm({ className, ...rest }) {
                 >
                   Confirm Meeting
                 </Button>
-                </RouterLink>
+                {/*</RouterLink>*/}
               </Box>
 
             </Grid>
@@ -177,4 +196,3 @@ CreateForm.propTypes = {
   className: PropTypes.string
 };
 
-// export default CreateForm;

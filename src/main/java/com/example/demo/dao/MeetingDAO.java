@@ -93,5 +93,28 @@ public class MeetingDAO {
                 "' where meeting_id="+meeting.getMeeting_id();
         jdbcTemplate.update(sql);
     }
+
+    public void updateAlert(int meeting_id,int user_id,String alert_type){
+        String sql="update participation set alert_type='"+alert_type+
+                "' where meeting_id="+meeting_id+" and user_id="+user_id;
+        jdbcTemplate.update(sql);
+    }
+
+    public void updateUser(User user){
+        String sql="update all_user set user_phone=" +user.getUser_phone()+
+                ",user_email='" +user.getUser_email()+
+                "',user_name='" +user.getUser_name()+
+                "',user_password='" +user.getUser_password()+
+                "',user_type='" +user.getUser_type()+
+                "',user_cv='" +user.getUser_cv()+
+                "',user_coverletter='" +user.getUser_coverletter()+
+                "',user_statement='"+user.getUser_statement()+
+                "' where user_id="+user.getUser_id();
+        jdbcTemplate.update(sql);
+    }
+    public List<Map<String,Object>> getUserByID(int id){
+        String sql="select * from all_user where user_id="+id;
+        return jdbcTemplate.queryForList(sql);
+    }
 }
 
