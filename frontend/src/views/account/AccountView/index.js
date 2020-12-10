@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Box,
   Container,
   Grid,
   makeStyles
@@ -7,6 +8,7 @@ import {
 import Page from 'src/components/Page';
 import Profile from './Profile';
 import ProfileDetails from './ProfileDetails';
+import Password from "./Password";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,7 +48,11 @@ const Account = () => {
           >
             <ProfileDetails />
           </Grid>
+
         </Grid>
+        <Box mt={3}>
+        <Password />
+      </Box>
       </Container>
     </Page>
   );
