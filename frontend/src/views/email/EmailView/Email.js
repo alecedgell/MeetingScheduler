@@ -1,14 +1,16 @@
-import React, {useState} from 'react';
-import PropTypes from 'prop-types';
+import React from 'react';
 import { makeStyles } from '@material-ui/styles';
 import {
   Button,
   CardHeader,
   Card,
-  Divider,
-  Grid, Box, Table, TableHead, TableRow, TableCell, TableBody
+  Grid,
+  Table,
+  TableHead,
+  TableRow,
+  TableCell,
+  TableBody
 } from '@material-ui/core';
-
 import Page from "../../../components/Page";
 
 
@@ -69,7 +71,7 @@ export default function Email(){
   if (data?.length > 0) isLoading = false;
 
   return (
-      <Page>
+      <Page title={"Email"}>
         <CardHeader
           title='Email'
           style={{ textAlign: 'center' }}
