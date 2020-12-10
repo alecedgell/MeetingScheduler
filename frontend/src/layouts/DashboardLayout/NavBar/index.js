@@ -14,6 +14,7 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import SettingsIcon from '@material-ui/icons/Settings';
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import CalendarViewDayIcon from '@material-ui/icons/CalendarViewDay';
+import EmailIcon from '@material-ui/icons/Email';
 import NavItem from './NavItem';
 
 const items = [
@@ -31,6 +32,11 @@ const items = [
     href: '/app/current',
     icon: CalendarViewDayIcon,
     title: 'Current Meetings'
+  },
+  {
+    href: '/app/email',
+    icon: EmailIcon,
+    title: 'Email'
   },
   {
     href: '/app/account',

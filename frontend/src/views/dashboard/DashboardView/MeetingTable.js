@@ -86,6 +86,7 @@ const MeetingTable = ({ className, ...rest }) => {
     let body = await response.json();
     upDateData(body);
   }
+
   if (firstLoad) {
     getCandidate()
     setLoad(false)
