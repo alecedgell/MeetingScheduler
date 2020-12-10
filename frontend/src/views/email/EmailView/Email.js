@@ -85,7 +85,7 @@ export default function Email(){
 
           <Card
             style={{ textAlign: 'center' }}>
-              <Button href={"https://mail.google.com/"}>
+              <Button target="_blank" href={"https://mail.google.com/"}>
                   <CardHeader
                     title='Gmail'
                     style={{ textAlign: 'center' }}
@@ -101,7 +101,7 @@ export default function Email(){
           <Card
             className={classes.card}
             style={{ textAlign: 'center' }}>
-            <Button href={"https://outlook.office.com/mail/"}>
+            <Button target="_blank" href={"https://outlook.office.com/mail/"}>
               <CardHeader
                 title='Outlook'
                 style={{ textAlign: 'center' }}
