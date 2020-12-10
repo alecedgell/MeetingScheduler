@@ -128,7 +128,7 @@ export default function Email(){
             <Card minWidth={800}>
               <Table>
                 <TableHead>
-                  <TableCell>Candidates</TableCell>
+                  <TableCell>Candidates  </TableCell>
                   <TableCell>Email</TableCell>
                 </TableHead>
                   <TableBody>
