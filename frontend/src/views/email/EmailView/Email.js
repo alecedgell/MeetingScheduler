@@ -165,7 +165,7 @@ export default function Email(){
             <Card minWidth={800}>
               <Table>
                 <TableHead>
-                  <TableCell>Admins</TableCell>
+                  <TableCell>Admins       </TableCell>
                   <TableCell>Email</TableCell>
                 </TableHead>
 
