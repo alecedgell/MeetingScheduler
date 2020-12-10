@@ -36,6 +36,7 @@ export default function Calender() {
   const [firstLoad, setLoad] = React.useState(true);
   let isLoading = true;
 
+
   async function sampleFunc() {
     let response = await fetch("/api/getMeetings/1")
     let body = await response.json();

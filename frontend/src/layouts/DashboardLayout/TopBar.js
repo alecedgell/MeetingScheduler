@@ -40,7 +40,7 @@ const TopBar = ({
       {...rest}
     >
       <Toolbar>
-        <RouterLink to="/">
+        <RouterLink to="/app/dashboard">
           <Button color={"secondary"} variant='contained'>Meeting Scheduler</Button>
         </RouterLink>
         <Box flexGrow={1} />
@@ -54,9 +54,14 @@ const TopBar = ({
               <NotificationsIcon />
             </Badge>
           </IconButton>
-          <IconButton color="inherit">
-            <InputIcon />
-          </IconButton>
+
+            <RouterLink to={'/'}>
+              <IconButton color={"inherit"}>
+                <InputIcon />
+              </IconButton>
+            </RouterLink>
+
+
         </Hidden>
         <Hidden lgUp>
           <IconButton

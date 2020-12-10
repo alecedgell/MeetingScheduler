@@ -117,4 +117,3 @@ public class MeetingDAO {
         return jdbcTemplate.queryForList(sql);
     }
 }
-

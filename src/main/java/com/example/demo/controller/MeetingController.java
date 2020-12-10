@@ -91,6 +91,7 @@ public class MeetingController {
     public void updateUser(@RequestBody User user){
         dao.updateUser(user);
     }
+
     @GetMapping(value="/getUserByID/{user_id}")
     public List<Map<String,Object>> getUserByID(@PathVariable("user_id")int user_id){
         return dao.getUserByID(user_id);
