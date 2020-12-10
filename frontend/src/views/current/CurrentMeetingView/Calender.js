@@ -35,6 +35,7 @@ export default function Calender() {
   const [data3, upDateData3] = React.useState([]);
   const [firstLoad, setLoad] = React.useState(true);
   let isLoading = true;
+  const [alert, setAlert] = React.useState("");
 
 
   async function sampleFunc() {
@@ -57,6 +58,9 @@ export default function Calender() {
     sampleLocation();
     getParticipants();
     setLoad(false)
+  }
+  function getAlert() {
+    let response = fetch
   }
   if (data.length > 0) isLoading = false;
 
@@ -95,7 +99,8 @@ export default function Calender() {
                   }
                   <TableCell>{data3.map(row2 => (
                     row2.user_name
-                  ))}</TableCell>
+                  ))}
+                  </TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell><CandidateInfo/></TableCell>

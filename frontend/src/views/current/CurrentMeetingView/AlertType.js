@@ -5,14 +5,16 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogActions from "@material-ui/core/DialogActions";
 
 
-export default function Alert() {
+export default function Alert({sendAlert}) {
   const [open, setOpen] = React.useState(false);
   const [alert, setAlert] = React.useState(" ");
   const handleAlertChange = event => setAlert(event.target.value);
 
   const handleSubmit = () => {
+
     submitAlert();
     setAlert(" ");
+    handleClose();
   };
   const handleClickOpen = () => {
     setOpen(true);
@@ -21,7 +23,13 @@ export default function Alert() {
     setOpen(false);
   };
   function submitAlert() {
-
+    const options = {
+      method: 'PUT',
+      headers: {
+        'Content-type': 'application/json',
+      }
+    }
+    fetch(`/api/updateAlert/100/1/${alert}`, options).catch(error => console.log(error));
   }
 
   return (
@@ -53,7 +61,4 @@ export default function Alert() {
     </div>
 
   );
-
-
-
 }
