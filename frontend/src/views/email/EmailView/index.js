@@ -2,8 +2,8 @@ import React, {Fragment, useRef} from "react";
 import { Link as RouterLink} from 'react-router-dom';
 import {Container} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
-import Email from './views/email/EmailView'
-import Page from "../../../components/Page";
+import Email from './EmailView'
+import Page from "src/components/Page";
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -15,14 +15,12 @@ const useStyles = makeStyles((theme) => ({
     minWidth: 210
   }
 }));
-const Example = () => {
-  const componentRef = useRef();
-};
+
 
 
 const EmailView = () => {
   const classes = useStyles();
-  const componentRef = Example();
+
 
   return (
     <Page

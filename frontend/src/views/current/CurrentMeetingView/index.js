@@ -22,15 +22,12 @@ const useStyles = makeStyles((theme) => ({
     height: '100%'
   }
 }));
-const Example = () => {
-  const componentRef = useRef();
-};
+
 
 
 const ProductList = () => {
   const classes = useStyles();
-  // const [products] = useState(data);
-  const componentRef = Example();
+
 
   return (
     <Page
