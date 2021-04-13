@@ -41,12 +41,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const NavItem = ({
-  className,
-  href,
-  icon: Icon,
-  title,
-  ...rest
-}) => {
+                   className,
+                   href,
+                   icon: Icon,
+                   title,
+                   ...rest
+                 }) => {
   const classes = useStyles();
 
   return (
@@ -77,7 +77,7 @@ const NavItem = ({
 
 NavItem.propTypes = {
   className: PropTypes.string,
-  href: PropTypes.string,
+  url: PropTypes.string,
   icon: PropTypes.elementType,
   title: PropTypes.string
 };

@@ -26,10 +26,10 @@ const useStyles = makeStyles(() => ({
 }));
 
 const TopBar = ({
-  className,
-  onMobileNavOpen,
-  ...rest
-}) => {
+                  className,
+                  onMobileNavOpen,
+                  ...rest
+                }) => {
   const classes = useStyles();
   const [notifications] = useState([]);
 
@@ -40,7 +40,15 @@ const TopBar = ({
       {...rest}
     >
       <Toolbar>
-        <RouterLink to="/app/dashboard">
+        <Hidden lgUp>
+          <IconButton
+            color="inherit"
+            onClick={onMobileNavOpen}
+          >
+            <MenuIcon />
+          </IconButton>
+        </Hidden>
+        <RouterLink to="/">
           <Button color={"secondary"} variant='contained'>Meeting Scheduler</Button>
         </RouterLink>
         <Box flexGrow={1} />
@@ -54,23 +62,11 @@ const TopBar = ({
               <NotificationsIcon />
             </Badge>
           </IconButton>
-
-            <RouterLink to={'/'}>
-              <IconButton color={"inherit"}>
-                <InputIcon />
-              </IconButton>
-            </RouterLink>
-
-
-        </Hidden>
-        <Hidden lgUp>
-          <IconButton
-            color="inherit"
-            onClick={onMobileNavOpen}
-          >
-            <MenuIcon />
+          <IconButton color="inherit">
+            <InputIcon />
           </IconButton>
         </Hidden>
+
       </Toolbar>
     </AppBar>
   );

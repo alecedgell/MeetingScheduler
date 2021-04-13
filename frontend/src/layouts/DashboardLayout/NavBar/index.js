@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -14,7 +15,7 @@ import DashboardIcon from '@material-ui/icons/Dashboard';
 import SettingsIcon from '@material-ui/icons/Settings';
 import CalendarTodayIcon from '@material-ui/icons/CalendarToday';
 import CalendarViewDayIcon from '@material-ui/icons/CalendarViewDay';
-import EmailIcon from '@material-ui/icons/Email';
+import ExploreIcon from '@material-ui/icons/Explore';
 import NavItem from './NavItem';
 
 const items = [
@@ -34,15 +35,20 @@ const items = [
     title: 'Current Meetings'
   },
   {
-    href: '/app/email',
-    icon: EmailIcon,
-    title: 'Email'
-  },
-  {
     href: '/app/account',
     icon: UsersIcon,
     title: 'Account'
-  }
+  },
+  {
+    href: '/app/settings',
+    icon: SettingsIcon,
+    title: 'Settings'
+  },
+  {
+    href: '/app/map',
+    icon: ExploreIcon,
+    title: 'Map'
+  },
 ];
 
 const useStyles = makeStyles(() => ({

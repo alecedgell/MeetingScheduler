@@ -52,3 +52,7 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### GMaps API ###
+/.env.local
+/.env.example

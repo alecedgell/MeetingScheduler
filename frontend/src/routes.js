@@ -11,6 +11,8 @@ import CurrentMeetingView from 'src/views/current/CurrentMeetingView';
 import LoginView from "./views/auth/LoginView";
 import RegisterView from "./views/auth/RegisterView";
 import EmailView from './views/email/EmailView/Email';
+import MapView from './views/Map/MapView/Map.js';
+
 const routes = [
   {
     path: 'register',
@@ -33,6 +35,7 @@ const routes = [
       { path: 'dashboard', element: <DashboardView /> },
       { path: 'settings', element: <SettingsView /> },
       { path: 'email', element: <EmailView /> },
+      { path: 'map', element: <MapView /> },
       { path: '*', element: <Navigate to="/404" /> }
     ]
   },

@@ -17,12 +17,12 @@ import {
 function ProfileDetails() {
   const [data, upDateData] = React.useState([]);
 
-  async function sampleFunc() {
-    let response = await fetch("/api/getUserByID/9")
-    let body = await response.json();
-    upDateData(body);
-  }
-  sampleFunc();
+  // async function sampleFunc() {
+  //   let response = await fetch("/api/getUserByID/9")
+  //   let body = await response.json();
+  //   upDateData(body);
+  // }
+  // sampleFunc();
 
   const useStyles = makeStyles(() => ({
     root: {}
@@ -42,37 +42,37 @@ function ProfileDetails() {
     });
   };
 
-  const handleSubmit = () => {
-    const user_id=parseInt(data.map(row => (row.user_id)));
-    const user_password=data.map(row => (row.user_password)).toString();
-    const user_type=data.map(row => (row.user_type)).toString();
-    const user_cv=data.map(row => (row.user_cv)).toString();
-    const user_coverletter=data.map(row => (row.user_coverletter)).toString();
-    const user_statement=data.map(row => (row.user_statement)).toString();
-    const user_phone=(values.user_phone==='')?parseInt(data.map(row => (row.user_phone))):values.user_phone;
-    const user_email=(values.user_email==='')?data.map(row => (row.user_email)).toString():values.user_email;
-    const user_name=(values.user_name==='')?data.map(row => (row.user_name)).toString():values.user_name;
-    updateUser(user_id,user_phone,user_email,user_name,user_password,user_type,user_cv,user_coverletter,user_statement);
-    setValues({
-      ...values,
-      ['user_phone']: '',
-      ['user_name']: '',
-      ['user_email']: ''
-    });
-  };
+  // const handleSubmit = () => {
+  //   const user_id=parseInt(data.map(row => (row.user_id)));
+  //   const user_password=data.map(row => (row.user_password)).toString();
+  //   const user_type=data.map(row => (row.user_type)).toString();
+  //   const user_cv=data.map(row => (row.user_cv)).toString();
+  //   const user_coverletter=data.map(row => (row.user_coverletter)).toString();
+  //   const user_statement=data.map(row => (row.user_statement)).toString();
+  //   const user_phone=(values.user_phone==='')?parseInt(data.map(row => (row.user_phone))):values.user_phone;
+  //   const user_email=(values.user_email==='')?data.map(row => (row.user_email)).toString():values.user_email;
+  //   const user_name=(values.user_name==='')?data.map(row => (row.user_name)).toString():values.user_name;
+  //   updateUser(user_id,user_phone,user_email,user_name,user_password,user_type,user_cv,user_coverletter,user_statement);
+  //   setValues({
+  //     ...values,
+  //     ['user_phone']: '',
+  //     ['user_name']: '',
+  //     ['user_email']: ''
+  //   });
+  // };
 
-  function updateUser(user_id,user_phone,user_email,user_name,user_password,user_type,user_cv,user_coverletter,user_statement) {
-
-    const user = {user_id,user_phone,user_email,user_name,user_password,user_type,user_cv,user_coverletter,user_statement};
-    const options = {
-      method: 'PUT',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body:JSON.stringify(user)
-    }
-    fetch('/api/updateUser', options).catch(error => console.log(error));
-  }
+  // function updateUser(user_id,user_phone,user_email,user_name,user_password,user_type,user_cv,user_coverletter,user_statement) {
+  //
+  //   const user = {user_id,user_phone,user_email,user_name,user_password,user_type,user_cv,user_coverletter,user_statement};
+  //   const options = {
+  //     method: 'PUT',
+  //     headers: {
+  //       'Content-type': 'application/json',
+  //     },
+  //     body:JSON.stringify(user)
+  //   }
+  //   fetch('/api/updateUser', options).catch(error => console.log(error));
+  // }
 
 
   return (
@@ -162,7 +162,7 @@ function ProfileDetails() {
             <Button
               color="primary"
               variant="contained"
-              onClick={handleSubmit}
+              //onClick={handleSubmit}
             >
               Save details
             </Button>

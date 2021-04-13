@@ -61,12 +61,12 @@ export default function Email(){
     let body3 = await response.json();
     upDateData3(body3);
   }
-  if (firstLoad) {
-    getCandidates();
-    getParticipants();
-    getAdmins();
-    setLoad(false)
-  }
+  // if (firstLoad) {
+  //   getCandidates();
+  //   getParticipants();
+  //   getAdmins();
+  //   setLoad(false)
+  // }
 
   if (data?.length > 0) isLoading = false;
 

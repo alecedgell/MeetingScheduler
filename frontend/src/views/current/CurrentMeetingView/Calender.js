@@ -13,15 +13,13 @@ import {
 } from '@material-ui/core';
 import {makeStyles} from "@material-ui/styles";
 import theme from "../../../theme";
-import Map from "./Map"
-import FeedbackPopup from "./FeedbackPopup";
 import Alert from "./AlertType";
 import CandidateInfo from "./CandidateInfo";
 
 const useStyles = makeStyles(() => ({
   root: {},
   table: {
-    minWidth: 650,
+    width: '20%',
   },
   card: {
     marginBottom: theme.spacing(3)
@@ -38,27 +36,27 @@ export default function Calender() {
   const [alert, setAlert] = React.useState("");
 
 
-  async function sampleFunc() {
-    let response = await fetch("/api/getMeetings/1")
-    let body = await response.json();
-    upDateData(body);
-  }
-  async function sampleLocation() {
-    let response2 = await fetch("/api/getLocation/1")
-    let body2 = await response2.json();
-    upDateData2(body2)
-  }
-  async function getParticipants() {
-    let response3 = await fetch("/api/getPeople/100")
-    let body3 = await response3.json();
-    upDateData3(body3)
-  }
-  if (firstLoad) {
-    sampleFunc();
-    sampleLocation();
-    getParticipants();
-    setLoad(false)
-  }
+  // async function sampleFunc() {
+  //   let response = await fetch("/api/getMeetings/1")
+  //   let body = await response.json();
+  //   upDateData(body);
+  // }
+  // async function sampleLocation() {
+  //   let response2 = await fetch("/api/getLocation/1")
+  //   let body2 = await response2.json();
+  //   upDateData2(body2)
+  // }
+  // async function getParticipants() {
+  //   let response3 = await fetch("/api/getPeople/100")
+  //   let body3 = await response3.json();
+  //   upDateData3(body3)
+  // }
+  // if (firstLoad) {
+  //   sampleFunc();
+  //   sampleLocation();
+  //   getParticipants();
+  //   setLoad(false)
+  // }
   function getAlert() {
     let response = fetch
   }
@@ -67,13 +65,12 @@ export default function Calender() {
   return (
     <div>
 
-      {/*<Alert/>*/}
-
-      <Button onClick={() => window.print()} variant={'contained'}>Print</Button>
+      <Box m={2} textAlign='center'>
+        <Button onClick={() => window.print()} variant={'contained'} >Print</Button>
+      </Box>
       <Card className={classes.card}>
         <CardHeader title='Current Meetings'/>
       </Card>
-      {data?.map(row => (
         <Card className={classes.card}>
           <Divider/>
           <Box minWidth={600}>
@@ -81,56 +78,53 @@ export default function Calender() {
             <Table>
               <TableHead key={"thead"}>
                 <TableRow>
-
                   <TableCell>Start time:</TableCell>
-                  <TableCell>{row.meeting_starttime}</TableCell>
+                  <TableCell> 4/11/2020 9:00am</TableCell>
+                </TableRow>
+                <TableRow>
                   <TableCell>End time:</TableCell>
-                  <TableCell>{row.meeting_endtime}</TableCell>
+                  <TableCell>4/11/2020  10:00am</TableCell>
+                </TableRow>
+                <TableRow>
                   <TableCell>Location:</TableCell>
-                  <TableCell>{row.location_id}</TableCell>
+                  <TableCell>Phillips Hall</TableCell>
                 </TableRow>
               </TableHead>
 
               <TableBody key={"tbody"}>
                 <TableRow>
                   <TableCell>Participants:</TableCell>
-                  {/*fix this section
-                    Need to connect the primary keys so the cards change based upon the user_id and meeting_id*/
-                  }
-                  <TableCell>{data3.map(row2 => (
-                    row2.user_name
-                  ))}
-                  </TableCell>
+                  <TableCell>(Candidate)Alec Edgell, (Professor)Dr.Banner</TableCell>
                 </TableRow>
                 <TableRow>
+                  <TableCell>Information:</TableCell>
                   <TableCell><CandidateInfo/></TableCell>
-                  <TableCell></TableCell>
-                  <TableCell></TableCell>
-                  <TableCell>Alert Type: </TableCell>
-
-                  <TableCell><Alert/></TableCell>
 
                 </TableRow>
+                <TableRow>
+                  <TableCell>Alert Type: </TableCell>
+                  <TableCell><Alert/></TableCell>
+                </TableRow>
+
                 <TableRow>
                   <TableCell>Provide feedback:</TableCell>
-                  <TableCell>{row.meeting_feedback}</TableCell>
-                  <TableCell><FeedbackPopup meeting_id={row.meeting_id}/></TableCell>
+                  <TableCell>Great Job Today!</TableCell>
+
                 </TableRow>
 
                 <TableRow>
                   <TableCell>Meeting status:</TableCell>
-                  <TableCell>Running late/early etc</TableCell>
+                  <TableCell>Upcoming</TableCell>
                 </TableRow>
 
               </TableBody>
 
             </Table>
-            <Map />
           </Box>
 
         </Card>
 
-      ))}
+
 
     </div>
   );

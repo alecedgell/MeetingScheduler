@@ -13,15 +13,13 @@ import {
   Typography,
   makeStyles, Table, TableHead, TableRow, TableCell, TableBody
 } from '@material-ui/core';
-import CandidateInfo from "../../current/CurrentMeetingView/CandidateInfo";
-import Alert from "../../current/CurrentMeetingView/AlertType";
-import FeedbackPopup from "../../current/CurrentMeetingView/FeedbackPopup";
-import Map from "../../current/CurrentMeetingView/Map";
+
 
 
   const user = {
-    avatar: '/static/images/avatars/avatar-profile-picture',
+    avatar: './static/images/avatars/avatar-profile-picture',
     city: 'Eau Claire',
+    state: 'Wisconsin',
     country: 'USA',
     jobTitle: 'Senior Developer',
     name: 'John Smith',
@@ -64,7 +62,7 @@ import Map from "../../current/CurrentMeetingView/Map";
               color="textSecondary"
               variant="body1"
             >
-              {`${user.city} ${user.country}`}
+              {`${user.city}, ${user.state} ${user.country}`}
             </Typography>
             <Typography
               className={classes.dateText}

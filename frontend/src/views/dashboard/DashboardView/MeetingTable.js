@@ -36,20 +36,20 @@ const useStyles = makeStyles(() => ({
 }));
 
 
-function deleteCandidate(user_id) {
-  const options = {
-    method: 'DELETE',
-    headers: {
-      'Content-type': 'application/json',
-      'Accept' : 'application/json'
-    },
-  }
-  if (window.confirm('Are you sure you want to delete Candidate?')) {
-    fetch('/api/deleteUser/' + user_id, options).catch(error => console.log(error)).then((response) => {
-      return response.json();
-    });
-  }
-}
+// function deleteCandidate(user_id) {
+//   const options = {
+//     method: 'DELETE',
+//     headers: {
+//       'Content-type': 'application/json',
+//       'Accept' : 'application/json'
+//     },
+//   }
+//   if (window.confirm('Are you sure you want to delete Candidate?')) {
+//     fetch('/api/deleteUser/' + user_id, options).catch(error => console.log(error)).then((response) => {
+//       return response.json();
+//     });
+//   }
+//}
 
 const MeetingTable = ({ className, ...rest }) => {
   const classes = useStyles();
@@ -62,37 +62,37 @@ const MeetingTable = ({ className, ...rest }) => {
   const handleEmailChange = event => setEmail(event.target.value);
   const handleNameChange = event => setName(event.target.value);
 
-  function addCandidate(user_name, user_email) {
-    var user_cv = null;
-    var user_coverLetter = null;
-    var user_statement = null;
-    var user_phone = null;
-    var user_password = null;
-    var user_type = "Candidate";
-    const user = {user_phone, user_email, user_name, user_password, user_type, user_cv, user_coverLetter, user_statement};
-    const options = {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json',
-      },
-      body:JSON.stringify(user),
-    }
-    fetch('/api/insertUser', options).catch(error => console.log(error));
-  }
+  // function addCandidate(user_name, user_email) {
+  //   var user_cv = null;
+  //   var user_coverLetter = null;
+  //   var user_statement = null;
+  //   var user_phone = null;
+  //   var user_password = null;
+  //   var user_type = "Candidate";
+  //   const user = {user_phone, user_email, user_name, user_password, user_type, user_cv, user_coverLetter, user_statement};
+  //   const options = {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-type': 'application/json',
+  //     },
+  //     body:JSON.stringify(user),
+  //   }
+    //fetch('/api/insertUser', options).catch(error => console.log(error));
+  //}
 
 
-  async function getCandidate() {
-    let response = await fetch("/api/getUserType/Candidate")
-    let body = await response.json();
-    upDateData(body);
-  }
+  //async function getCandidate() {
+    //let response = await fetch("/api/getUserType/Candidate")
+    //let body = await response.json();
+    //upDateData(body);
+  //}
 
   if (firstLoad) {
-    getCandidate()
+    //getCandidate()
     setLoad(false)
   }
   const handleSubmit = variable => {
-    addCandidate(name, email);
+    //addCandidate(name, email);
     setEmail("");
     setName("");
   };
@@ -102,7 +102,7 @@ const MeetingTable = ({ className, ...rest }) => {
       className={clsx(classes.root, className)}
       {...rest}
     >
-      <CardHeader title='Meetings' className={classes.header}/>
+      <CardHeader title='Candidates' className={classes.header} style={useStyles()}/>
         <Grid
           container
           direction={"row"}
@@ -125,30 +125,37 @@ const MeetingTable = ({ className, ...rest }) => {
                 <TableCell>Candidate Name</TableCell>
                 <TableCell>Email</TableCell>
                 <TableCell>Uploaded Documents</TableCell>
-                <TableCell>Meeting Schedule</TableCell>
-                <TableCell align={"center"}>Action</TableCell>
+                {/*<TableCell>Meeting Schedule</TableCell>*/}
+                {/*<TableCell align={"center"}>Action</TableCell>*/}
               </TableRow>
             </TableHead>
             <TableBody>
-              {data?.map((row) => (
-                <TableRow
-                  hover
-                  key={row.id}
-                >
-                  <TableCell>{row.user_id}</TableCell>
-                  <TableCell>{row.user_name}</TableCell>
-                  <TableCell>{row.user_email}</TableCell>
+                <TableRow>
+                  <TableCell>1</TableCell>
+                  <TableCell>Alec Edgell</TableCell>
+                  <TableCell>aedgell98@gmail.com</TableCell>
                   {/*<TableCell>{order.upDocs}</TableCell>*/}
-                  <TableCell>CV</TableCell>
-                  <TableCell>Create/Delete</TableCell>
                   {/*<TableCell>{order.schedule}</TableCell>*/}
                   {/*<TableCell>{order.action}</TableCell>*/}
                   <TableCell align={"center"}>
                     <Button className={classes.button} variant={"contained"}>Edit</Button>
-                    <Button className={classes.deletebutton} variant={"contained"} startIcon={<DeleteIcon/>} onClick={() => deleteCandidate(row.user_id)}>Delete</Button>
+                    {/*<Button className={classes.deletebutton} variant={"contained"} startIcon={<DeleteIcon/>} onClick={() => deleteCandidate(row.user_id)}>Delete</Button>*/}
                   </TableCell>
                 </TableRow>
-              ))}
+              <TableRow>
+                  <TableCell>2</TableCell>
+                  <TableCell>Bob Smith</TableCell>
+                  <TableCell>bobby@gmail.com</TableCell>
+                  {/*<TableCell>{order.upDocs}</TableCell>*/}
+                  {/*<TableCell>{order.schedule}</TableCell>*/}
+                  {/*<TableCell>{order.action}</TableCell>*/}
+                  <TableCell align={"center"}>
+                    <Button className={classes.button} variant={"contained"}>Edit</Button>
+                    {/*<Button className={classes.deletebutton} variant={"contained"} startIcon={<DeleteIcon/>} onClick={() => deleteCandidate(row.user_id)}>Delete</Button>*/}
+                  </TableCell>
+
+
+              </TableRow>
               <TableRow>
                 <TableCell><TextField label={"Name"} name={"fullName"} onChange={handleNameChange} value={name}></TextField></TableCell>
                 <TableCell><TextField label={"Email"} name={"email"} onChange={handleEmailChange} value={email}></TextField></TableCell>
