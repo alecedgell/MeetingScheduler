@@ -55,4 +55,3 @@ build/
 
 ### GMaps API ###
 /.env.local
-/.env.example
