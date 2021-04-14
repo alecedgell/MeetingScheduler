@@ -13,7 +13,7 @@ This project is currently in development. Users can filter tweets by username an
 
 #### Example:   
 
-![Dashboard Display](Dashboard Display.png "Display of the default dashboard")
+![Dashboard Display](https://user-images.githubusercontent.com/78757687/114758681-dbfa6080-9d22-11eb-910f-331081a57188.png)
 
 
 [ PRETEND OTHER SCREEN SHOT IS HERE ]
