@@ -13,7 +13,8 @@ This project is currently in development. Users can filter tweets by username an
 
 #### Example:   
 
-[ PRETEND SCREEN SHOT IS HERE ]
+![Dashboard Display](Dashboard Display.png "Display of the default dashboard")
+
 
 [ PRETEND OTHER SCREEN SHOT IS HERE ]
 
